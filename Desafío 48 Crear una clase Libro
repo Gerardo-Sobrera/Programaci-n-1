@@ -1,0 +1,103 @@
+Python
+class Autor:
+    """Clase que representa a un autor y gestiona su catálogo de obras."""
+
+    def __init__(self, nombre: str, nacionalidad: str):
+        self.nombre = nombre
+        self.nacionalidad = nacionalidad
+        self.libros = []  # Relación 1-a-N: Almacena objetos de tipo Libro
+
+    def agregar_libro(self, libro) -> bool:
+        """Añade un objeto Libro a la lista del autor evitando duplicados por ISBN."""
+        if libro not in self.libros:
+            self.libros.append(libro)
+            return True
+        return False
+
+    def eliminar_libro(self, isbn: str) -> bool:
+        """Elimina un libro del catálogo del autor mediante su ISBN."""
+        for libro in self.libros:
+            if libro.isbn == isbn:
+                self.libros.remove(libro)
+                print(f'✔ Libro "{libro.titulo}" eliminado del catálogo de {self.nombre}.')
+                return True
+        print(f'✖ No se encontró el libro con ISBN {isbn} en el catálogo de {self.nombre}.')
+        return False
+
+    def mostrar_informacion(self):
+        """Muestra la información detallada del autor y sus obras asociadas."""
+        print(f"\n--- AUTOR: {self.nombre} ({self.nacionalidad}) ---")
+        if not self.libros:
+            print(" No tiene libros registrados en su catálogo.")
+            return
+
+        print(" Libros publicados:")
+        for i, libro in enumerate(self.libros, 1):
+            print(f"   {i}. \"{libro.titulo}\" | Género: {libro.genero} | ISBN: {libro.isbn}")
+        print("-" * (30 + len(self.nombre)))
+
+
+class Libro:
+    """Clase que representa a un libro con sus atributos esenciales y su autor."""
+
+    def __init__(self, titulo: str, genero: str, isbn: str, autor: Autor):
+        self.titulo = titulo
+        self.genero = genero
+        self.isbn = isbn
+        self.autor = autor  # Relación: Atributo que hace referencia al objeto Autor
+
+        # Vinculación bidireccional automática
+        if self.autor and isinstance(self.autor, Autor):
+            self.autor.agregar_libro(self)
+
+    def mostrar_detalle(self):
+        """Muestra los detalles completos del libro."""
+        nombre_autor = self.autor.nombre if self.autor else "Desconocido"
+        print(f'📖 "{self.titulo}" | Autor: {nombre_autor} | Género: {self.genero} | ISBN: {self.isbn}')
+
+
+# ==========================================
+# PRUEBAS Y VERIFICACIÓN DE LAS CLASES
+# ==========================================
+
+if __name__ == "__main__":
+    # 1. Crear instancia de Autor
+    autor1 = Autor("Gabriel García Márquez", "Colombiana")
+    autor2 = Autor("George Orwell", "Británica")
+
+    # 2. Crear instancias de Libro asociadas a sus respectivos autores
+    libro1 = Libro(
+        titulo="Cien años de soledad",
+        genero="Realismo mágico",
+        isbn="978-0307474728",
+        autor=autor1
+    )
+    libro2 = Libro(
+        titulo="El amor en los tiempos del cólera",
+        genero="Novela romántica",
+        isbn="978-0307389732",
+        autor=autor1
+    )
+    libro3 = Libro(
+        titulo="1984",
+        genero="Distopía / Ciencia Ficción",
+        isbn="978-0451524935",
+        autor=autor2
+    )
+
+    # 3. Mostrar detalle individual desde el objeto Libro
+    print("=== 1. DETALLE DE LIBROS INDIVIDUALES ===")
+    libro1.mostrar_detalle()
+    libro3.mostrar_detalle()
+
+    # 4. Mostrar información del Autor (incluye la lista de sus libros)
+    print("\n=== 2. INFORMACIÓN DEL AUTOR Y SUS OBRAS ===")
+    autor1.mostrar_informacion()
+
+    # 5. Probar eliminación de un libro desde el Autor usando el ISBN
+    print("\n=== 3. ELIMINACIÓN DE UN LIBRO DEL CATALOGO DEL AUTOR ===")
+    autor1.eliminar_libro("978-0307389732")  # Elimina "El amor en los tiempos del cólera"
+
+    # 6. Estado final del catálogo del autor
+    autor1.mostrar_informacion()
+
