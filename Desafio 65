@@ -1,0 +1,49 @@
+Python
+import math
+
+# 1. Clase base
+class Figura:
+    def area(self):
+        """Método base que será sobrescrito por las subclases."""
+        pass
+
+# 2. Subclase Circulo
+class Circulo(Figura):
+    def __init__(self, radio):
+        self.radio = radio
+
+    def area(self):
+        # Fórmula: π * radio^2
+        return math.pi * (self.radio ** 2)
+
+# 3. Subclase Cuadrado
+class Cuadrado(Figura):
+    def __init__(self, lado):
+        self.lado = lado
+
+    def area(self):
+        # Fórmula: lado^2
+        return self.lado ** 2
+
+# 4. Creación de objetos y lista polimórfica
+figuras = [
+    Circulo(radio=5),
+    Cuadrado(lado=4),
+    Circulo(radio=2.5)
+]
+
+# 5. Recorrido de la lista y ejecución del método area()
+for figura in figuras:
+    nombre = figura.__class__.__name__
+    print(f"Figura: {nombre:<8} | Área: {figura.area():.2f}")
+
+
+Salida esperada
+
+
+
+Plaintext
+Figura: Circulo  | Área: 78.54
+Figura: Cuadrado | Área: 16.00
+Figura: Circulo  | Área: 19.63
+
