@@ -1,0 +1,29 @@
+Python
+def eliminar_duplicados(lista):
+    """
+    Elimina los elementos duplicados de una lista preservando el orden original.
+    """
+    lista_sin_duplicados = []
+    elementos_vistos = set()
+
+    for numero in lista:
+        if numero not in elementos_vistos:
+            lista_sin_duplicados.append(numero)
+            elementos_vistos.add(numero)
+
+    return lista_sin_duplicados
+
+
+# 1. Definición de la lista original con elementos repetidos
+lista_original = [4, 2, 7, 2, 8, 4, 1, 9, 7, 3, 2, 8]
+
+# 2. Procesamiento para eliminar duplicados
+lista_procesada = eliminar_duplicados(lista_original)
+
+# 3. Presentación clara de los resultados
+print("=== RESULTADOS DEL DESAFÍO 73 ===")
+print(f"Lista original:        {lista_original}")
+print(f"Lista sin duplicados:  {lista_procesada}")
+print(f"Total elementos antes: {len(lista_original)}")
+print(f"Total elementos después: {len(lista_procesada)}")
+
