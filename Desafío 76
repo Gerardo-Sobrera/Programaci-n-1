@@ -1,0 +1,51 @@
+Python
+class NodoArbol:
+    """Clase que representa un nodo individual en el árbol binario."""
+
+    def __init__(self, valor):
+        self.valor = valor
+        self.izquierdo = None
+        self.derecho = None
+
+
+def recorrido_preorden(nodo):
+    """Función recursiva para realizar el recorrido en preorden.
+
+    Orden: Raíz -> Subárbol Izquierdo -> Subárbol Derecho
+    """
+    if nodo is not None:
+        print(nodo.valor, end=" ")  # 1. Visitar la raíz
+        recorrido_preorden(nodo.izquierdo)  # 2. Recorrer la rama izquierda
+        recorrido_preorden(nodo.derecho)  # 3. Recorrer la rama derecha
+
+
+def main():
+    # Construcción del árbol binario (con 3 niveles de profundidad)
+    # Nivel 0 (Raíz principal)
+    raiz = NodoArbol(10)
+
+    # Nivel 1 (Hijos de la raíz)
+    raiz.izquierdo = NodoArbol(5)
+    raiz.derecho = NodoArbol(15)
+
+    # Nivel 2 (Nietos)
+    raiz.izquierdo.izquierdo = NodoArbol(3)
+    raiz.izquierdo.derecho = NodoArbol(7)
+    raiz.derecho.izquierdo = NodoArbol(12)
+    raiz.derecho.derecho = NodoArbol(20)
+
+    # Nivel 3 (Bisnietos - cumple y supera el requisito mínimo de profundidad)
+    raiz.izquierdo.izquierdo.izquierdo = NodoArbol(1)
+    raiz.izquierdo.izquierdo.derecho = NodoArbol(4)
+
+    # Ejecución del recorrido
+    print("--- Recorrido en Preorden ---")
+    print("Orden esperado: Raíz -> Izquierda -> Derecha")
+    print("Resultado obtenido: ", end="")
+    recorrido_preorden(raiz)
+    print()
+
+
+if __name__ == "__main__":
+    main()
+
