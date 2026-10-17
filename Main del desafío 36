@@ -1,0 +1,39 @@
+Python
+"""
+Programa principal: main.py
+Demuestra la importación y uso del módulo personalizado `formato_texto`.
+"""
+
+import formato_texto as ft
+
+
+def ejecutar_demostracion():
+    print("=== DEMOSTRACIÓN DE FORMATOS DE TEXTO ===")
+    
+    # 1. Pruebas individuales
+    print(ft.negrita("Este texto está en Negrita."))
+    print(ft.italica("Este texto está en Itálica / Cursiva."))
+    print(ft.subrayado("Este texto está Subrayado."))
+    
+    # 2. Uso de colores
+    print(ft.colorear("Este texto está en color Rojo (por defecto)."))
+    print(ft.colorear("Este texto está en color Verde.", ft.VERDE))
+    print(ft.colorear("Este texto está en color Cyan.", ft.CYAN))
+    
+    # 3. Combinación de múltiples estilos
+    texto_combinado = ft.estilo_personalizado(
+        "¡Texto de Alerta! (Negrita + Subrayado + Amarillo)",
+        ft.NEGRITA,
+        ft.SUBRAYADO,
+        ft.AMARILLO
+    )
+    print("\n" + texto_combinado)
+    
+    # 4. Uso dentro de cadenas formateadas (f-strings)
+    mensaje = f"Estado del sistema: {ft.colorear('OPERATIVO', ft.VERDE)} - Nivel de batería: {ft.negrita('98%')}"
+    print(mensaje)
+
+
+if __name__ == "__main__":
+    ejecutar_demostracion()
+
