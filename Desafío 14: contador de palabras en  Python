@@ -1,0 +1,17 @@
+# Desafío 14: Contador de palabras
+# Solicitar al usuario que ingrese un texto
+texto = input("Ingrese un texto: ")
+# Eliminar espacios sobrantes al inicio y final
+texto = texto.strip()
+# Verificar si el usuario ingresó texto
+if texto == "":
+print("\nNo se ingresó ningún texto.")
+else:
+# Separar las palabras correctamente
+palabras = texto.split()
+# Contar la cantidad de palabras
+cantidad = len(palabras)
+# Mostrar el resultado
+print("\n--- Resultado ---")
+print("Texto ingresado:", texto)
+print("Cantidad de palabras:", cantidad)
