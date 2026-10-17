@@ -1,0 +1,43 @@
+Python
+class Autor:
+    def __init__(self, nombre: str, nacionalidad: str):
+        self.nombre = nombre
+        self.nacionalidad = nacionalidad
+
+    def obtener_informacion(self) -> str:
+        return f"Autor: {self.nombre} | Nacionalidad: {self.nacionalidad}"
+
+
+class Poeta(Autor):
+    def __init__(self, nombre: str, nacionalidad: str, tipo_poesia: str):
+        # Inicialización de atributos heredados mediante super()
+        super().__init__(nombre, nacionalidad)
+        # Atributo propio de la subclase
+        self.tipo_poesia = tipo_poesia
+
+    def mostrar_datos_poeta(self) -> None:
+        print(f"Nombre: {self.nombre}")
+        print(f"Nacionalidad: {self.nacionalidad}")
+        print(f"Tipo de poesía: {self.tipo_poesia}")
+
+
+# --- Instanciación y Pruebas ---
+
+# 1. Creación de dos objetos Poeta
+poeta1 = Poeta("Mario Benedetti", "Uruguaya", "Poesía comprometida y amorosa")
+poeta2 = Poeta("Pablo Neruda", "Chilena", "Poesía lírica y surrealista")
+
+# 2. Muestra de sus datos (método propio de Poeta)
+print("=== Datos de Poetas ===")
+poeta1.mostrar_datos_poeta()
+print("-" * 30)
+poeta2.mostrar_datos_poeta()
+
+# 3. Verificación del uso de métodos y atributos heredados de Autor
+print("\n=== Verificación de Métodos/Atributos Heredados ===")
+# Acceso directo a atributo heredado
+print(f"Acceso directo a atributo heredado: {poeta1.nombre}")
+# Llamada a método heredado de la superclase
+print(poeta1.obtener_informacion())
+print(poeta2.obtener_informacion())
+
