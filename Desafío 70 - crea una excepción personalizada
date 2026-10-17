@@ -1,0 +1,39 @@
+Python
+import math
+
+# 1. Definición de la excepción personalizada heredando de Exception
+class NegativeNumberError(Exception):
+    """Excepción lanzada cuando el usuario ingresa un número negativo."""
+    def __init__(self, mensaje="No se puede calcular la raíz cuadrada de un número negativo."):
+        self.mensaje = mensaje
+        super().__init__(self.mensaje)
+
+
+def calcular_raiz_cuadrada():
+    try:
+        # Lógica de entrada de datos
+        numero = float(input("Ingresa un número para calcular su raíz cuadrada: "))
+
+        # 2. Lógica de validación y disparo (raise) de la excepción personalizada
+        if numero < 0:
+            raise NegativeNumberError(f"Error: Has ingresado {numero}. Los números negativos no tienen raíz cuadrada real.")
+
+        # Lógica aritmética
+        resultado = math.sqrt(numero)
+
+    # 3. Gestión de excepciones (try-except)
+    except NegativeNumberError as e:
+        # Captura de la excepción personalizada
+        print(e)
+    except ValueError:
+        # Captura de entradas no numéricas
+        print("Error: Entrada no válida. Debes ingresar un número.")
+    else:
+        # Se ejecuta solo si la operación fue exitosa
+        print(f"La raíz cuadrada de {numero} es: {resultado:.2f}")
+
+
+# Ejecución del programa
+if __name__ == "__main__":
+    calcular_raiz_cuadrada()
+
