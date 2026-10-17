@@ -1,0 +1,24 @@
+Python
+def realizar_division():
+    try:
+        # 1. Manejo de entrada de datos
+        num1 = int(input("Ingresa el primer número entero (dividendo): "))
+        num2 = int(input("Ingresa el segundo número entero (divisor): "))
+
+        # 2. Lógica aritmética (división)
+        resultado = num1 / num2
+
+    # 3. Control de excepciones con mensajes claros de retroalimentación
+    except ValueError:
+        print("Error: Entrada no válida. Debes ingresar únicamente números enteros.")
+    except ZeroDivisionError:
+        print("Error: No es posible dividir entre cero.")
+    else:
+        # Se ejecuta solo si no ocurrió ninguna excepción
+        print(f"Resultado: {num1} / {num2} = {resultado}")
+
+
+# Ejecución del programa
+if __name__ == "__main__":
+    realizar_division()
+
