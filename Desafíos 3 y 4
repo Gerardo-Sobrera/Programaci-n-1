@@ -1,0 +1,89 @@
+Suma de los primeros n números naturales
+1. Claridad y corrección del algoritmo (Pseudocódigo)
+Para resolver este problema de manera eficiente, se puede optar por dos
+enfoques: el iterativo (usando un bucle) y el matemático (usando la fórmula de
+la suma de una serie aritmética de Gauss). Presentamos el enfoque iterativo por
+su claridad algorítmica, y el matemático por su máxima eficiencia.
+Enfoque Iterativo:
+Plaintext
+Inicio
+Leer n (entero positivo)
+Suma <- 0
+Para i desde 1 hasta n con paso 1 Hacer
+Suma <- Suma + i
+FinPara
+Escribir Suma
+Fin
+2. Comprensión de los conceptos
+La suma de los primeros $n$ números naturales es una serie aritmética donde
+cada término aumenta en 1 respecto al anterior ($1 + 2 + 3 + ... + n$).
+
+● Lógica iterativa: El algoritmo acumula progresivamente el valor del
+contador i en la variable Suma durante cada repetición.
+● Optimización matemática: Existe una fórmula directa descubierta por
+Carl Friedrich Gauss para calcular esta serie sin necesidad de bucles:
+$$\text{Suma} = \frac{n \times (n + 1)}{2}$$
+Ambos métodos demuestran la comprensión del comportamiento de la
+serie.
+3. Código en Python
+A continuación se presenta la solución en Python implementando ambas
+opciones (la iterativa por claridad y la directa por eficiencia).
+Python
+def suma_naturales_iterativa(n):
+"""Calcula la suma mediante un bucle (Enfoque iterativo)."""
+suma = 0
+for i in range(1, n + 1):
+suma += i
+return suma
+def suma_naturales_eficiente(n):
+"""Calcula la suma usando la fórmula de Gauss (O(1) en tiempo)."""
+return (n * (n + 1)) // 2
+# --- Pruebas de verificación ---
+num_entrada = 10 # Ejemplo: 1+2+3+4+5+6+7+8+9+10 = 55
+print(f"Resultado iterativo para n={num_entrada}:
+{suma_naturales_iterativa(num_entrada)}")
+print(f"Resultado eficiente para n={num_entrada}:
+{suma_naturales_eficiente(num_entrada)}")
+
+Desafío 4:
+Número de elementos pares en una lista
+1. Claridad y corrección del algoritmo (Pseudocódigo)
+El algoritmo requiere recorrer cada elemento de la lista, evaluar si cumple la
+condición de paridad y, de ser así, incrementar un contador.
+Plaintext
+Inicio
+Leer lista_numeros
+Contador_pares <- 0
+Para cada numero en lista_numeros Hacer
+
+Si (numero MOD 2) == 0 Entonces
+Contador_pares <- Contador_pares + 1
+FinSi
+FinPara
+Escribir Contador_pares
+Fin
+2. Comprensión de los conceptos
+● Concepto de número par: Un número entero es par si es divisible por 2
+de forma exacta. En informática, esto se verifica mediante el operador
+Módulo (MOD o %), el cual devuelve el residuo de la división entera. Si
+numero % 2 == 0, el residuo es cero, lo que confirma que el número es
+par.
+● Estructura de control: Se utiliza un bucle para examinar de forma
+secuencial cada elemento de la lista y una estructura condicional (Si/If)
+para filtrar los elementos.
+3. Código en Python
+Se presenta una solución con sintaxis clara, estructurada mediante una función y
+utilizando las mejores prácticas de Python.
+Python
+def contar_elementos_pares(lista):
+"""Recorre una lista y devuelve la cantidad de números pares."""
+contador_pares = 0
+for numero in lista:
+if numero % 2 == 0:
+contador_pares += 1
+return contador_pares
+# --- Pruebas de verificación ---
+mi_lista = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11] # Tiene los pares: 2, 4, 6, 8, 10 (5
+en total)
+resultado = contar_elementos_pares(mi_lista)
+print(f"La lista contiene {resultado} números pares.")
