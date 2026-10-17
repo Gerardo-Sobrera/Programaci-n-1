@@ -1,0 +1,3 @@
+# Solicitar un número entero
+numero = int(input("Ingrese un número entero: "))
+# Lista de divisores
