@@ -1,0 +1,33 @@
+Python
+def mcd(a: int, b: int) -> int:
+    """
+    Calcula el Máximo Común Divisor (MCD) de dos enteros utilizando 
+    el algoritmo de Euclides de forma recursiva.
+    """
+    # Manejo de números negativos (el MCD siempre es positivo)
+    a, b = abs(a), abs(b)
+    
+    # CASO BASE: Cuando el resto/residuo (b) llega a 0, el MCD es 'a'.
+    if b == 0:
+        return a
+    
+    # LLAMADA RECURSIVA: MCD(a, b) = MCD(b, a % b)
+    return mcd(b, a % b)
+
+
+# --- Programa de demostración y pruebas ---
+if __name__ == "__main__":
+    casos_prueba = [
+        (8, 12),     # Ejemplo del desafío -> MCD: 4
+        (48, 18),    # MCD: 6
+        (101, 103),  # Números primos entre sí -> MCD: 1
+        (270, 192),  # MCD: 6
+        (0, 15),     # Manejo con cero -> MCD: 15
+        (-24, 36)    # Números negativos -> MCD: 12
+    ]
+
+    print("=== EVALUACIÓN DEL CÁLCULO DEL MCD ===")
+    for num1, num2 in casos_prueba:
+        resultado = mcd(num1, num2)
+        print(f"MCD({num1}, {num2}) = {resultado}")
+
