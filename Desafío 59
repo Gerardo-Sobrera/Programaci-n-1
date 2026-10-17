@@ -1,0 +1,61 @@
+Python
+# Clase base dada por el sistema
+class Libro:
+    def __init__(self, titulo, autor, isbn):
+        self.titulo = titulo
+        self.autor = autor
+        self.isbn = isbn
+
+    def mostrar_informacion(self):
+        print(f"Título: {self.titulo}")
+        print(f"Autor: {self.autor}")
+        print(f"ISBN: {self.isbn}")
+
+
+# 1. Clase LibroDigital que hereda de Libro
+class LibroDigital(Libro):
+    def __init__(self, titulo, autor, isbn, formato, tamano_archivo):
+        # Utiliza super() para inicializar los atributos heredados de Libro
+        super().__init__(titulo, autor, isbn)
+        self.formato = formato
+        self.tamano_archivo = tamano_archivo
+
+    def mostrar_informacion(self):
+        # Muestra la información base y añade los atributos propios de LibroDigital
+        super().mostrar_informacion()
+        print(f"Formato: {self.formato}")
+        print(f"Tamaño de archivo: {self.tamano_archivo}")
+
+
+# 2. Subclase EBook que hereda de LibroDigital
+class EBook(LibroDigital):
+    def __init__(self, titulo, autor, isbn, formato, tamano_archivo, enlace_descarga):
+        # Utiliza super() para inicializar los atributos heredados de LibroDigital
+        super().__init__(titulo, autor, isbn, formato, tamano_archivo)
+        self.enlace_descarga = enlace_descarga
+
+    def mostrar_informacion(self):
+        # Sobrescribe el método para incluir también el enlace de descarga
+        super().mostrar_informacion()
+        print(f"Enlace de descarga: {self.enlace_descarga}")
+
+
+# 3. Creación de objetos y prueba de funcionamiento
+if __name__ == "__main__":
+    print("--- INFORMACIÓN DEL LIBRO DIGITAL ---")
+    libro_digital = LibroDigital(
+        "Fahrenheit 451", "Ray Bradbury", "978-0307475312", "PDF", "2.5 MB"
+    )
+    libro_digital.mostrar_informacion()
+
+    print("\n--- INFORMACIÓN DEL EBOOK ---")
+    ebook = EBook(
+        "1984",
+        "George Orwell",
+        "978-0451524935",
+        "EPUB",
+        "1.8 MB",
+        "https://biblioteca.ejemplo.com/download/1984.epub",
+    )
+    ebook.mostrar_informacion()
+
