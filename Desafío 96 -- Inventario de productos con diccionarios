@@ -1,0 +1,125 @@
+Python
+def mostrar_menu():
+    print("\n--- SISTEMA DE INVENTARIO ---")
+    print("1. Agregar nuevo producto")
+    print("2. Actualizar stock de un producto")
+    print("3. Buscar producto por código")
+    print("4. Mostrar todo el inventario")
+    print("5. Salir")
+
+
+def agregar_producto(inventario):
+    print("\n--- Agregar Nuevo Producto ---")
+    codigo = input("Ingrese el código del producto: ").strip().upper()
+
+    if codigo in inventario:
+        print(f"Error: El producto con código '{codigo}' ya existe.")
+        return
+
+    nombre = input("Ingrese el nombre del producto: ").strip()
+
+    try:
+        precio = float(input("Ingrese el precio del producto: "))
+        stock = int(input("Ingrese la cantidad en stock: "))
+
+        if precio < 0 or stock < 0:
+            print("Error: El precio y el stock no pueden ser negativos.")
+            return
+
+        # Diccionario anidado con los detalles del producto
+        inventario[codigo] = {
+            "nombre": nombre,
+            "precio": precio,
+            "stock": stock,
+        }
+        print(f"¡Producto '{nombre}' agregado exitosamente!")
+
+    except ValueError:
+        print("Error: Por favor, ingrese valores numéricos válidos para precio y stock.")
+
+
+def actualizar_stock(inventario):
+    print("\n--- Actualizar Stock ---")
+    codigo = input("Ingrese el código del producto a actualizar: ").strip().upper()
+
+    if codigo not in inventario:
+        print(f"Error: No existe ningún producto con el código '{codigo}'.")
+        return
+
+    print(f"Producto actual: {inventario[codigo]['nombre']}")
+    print(f"Stock actual: {inventario[codigo]['stock']}")
+
+    try:
+        nuevo_stock = int(input("Ingrese la nueva cantidad en stock: "))
+
+        if nuevo_stock < 0:
+            print("Error: El stock no puede ser un valor negativo.")
+            return
+
+        inventario[codigo]["stock"] = nuevo_stock
+        print(
+            f"¡Stock actualizado con éxito! Nuevo stock para '{inventario[codigo]['nombre']}': {nuevo_stock}"
+        )
+
+    except ValueError:
+        print("Error: Por favor, ingrese un número entero válido para el stock.")
+
+
+def buscar_producto(inventario):
+    print("\n--- Buscar Producto ---")
+    codigo = input("Ingrese el código del producto a buscar: ").strip().upper()
+
+    if codigo in inventario:
+        detalles = inventario[codigo]
+        print(f"\n[Código: {codigo}]")
+        print(f"  - Nombre: {detalles['nombre']}")
+        print(f"  - Precio: ${detalles['precio']:.2f}")
+        print(f"  - Stock: {detalles['stock']} unidades")
+    else:
+        print(f"Error: No se encontró ningún producto con el código '{codigo}'.")
+
+
+def mostrar_inventario(inventario):
+    print("\n--- Inventario General ---")
+    if not inventario:
+        print("El inventario está vacío.")
+        return
+
+    for codigo, detalles in inventario.items():
+        print(
+            f"Código: {codigo} | Nombre: {detalles['nombre']} | Precio: ${detalles['precio']:.2f} | Stock: {detalles['stock']}"
+        )
+
+
+def main():
+    # Estructura principal: Diccionario anidado
+    # Clave: Código | Valor: Diccionario con detalles
+    inventario = {
+        "P001": {"nombre": "Camiseta básica", "precio": 15.99, "stock": 50},
+        "P002": {"nombre": "Pantalón de lona", "precio": 35.50, "stock": 20},
+    }
+
+    while True:
+        mostrar_menu()
+        opcion = input("\nSeleccione una opción (1-5): ").strip()
+
+        if opcion == "1":
+            agregar_producto(inventario)
+        elif opcion == "2":
+            actualizar_stock(inventario)
+        elif opcion == "3":
+            buscar_producto(inventario)
+        elif opcion == "4":
+            mostrar_inventario(inventario)
+        elif opcion == "5":
+            print("\n¡Gracias por usar el sistema de inventario! Saliendo...")
+            break
+        else:
+            print(
+                "Opción no válida. Por favor, ingrese un número del 1 al 5."
+            )
+
+
+if __name__ == "__main__":
+    main()
+
