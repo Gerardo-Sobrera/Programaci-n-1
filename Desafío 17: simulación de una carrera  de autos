@@ -1,0 +1,39 @@
+import random
+# Lista de autos
+autos = ["Auto 1", "Auto 2", "Auto 3", "Auto 4"]
+# Diccionario para guardar la distancia recorrida
+distancias = {}
+# Inicializar distancias en 0
+for auto in autos:
+distancias[auto] = 0
+# Simulación de la carrera (10 segundos)
+for segundo in range(1, 11):
+print(f"\nSegundo {segundo}")
+for auto in autos:
+# Velocidad aleatoria entre 10 y 20
+velocidad = random.randint(10, 20)
+# Avanzar distancia
+distancias[auto] += velocidad
+print(f"{auto} avanza {velocidad} metros. "
+f"Distancia total: {distancias[auto]} metros")
+
+# Obtener la distancia máxima
+distancia_maxima = max(distancias.values())
+# Buscar autos ganadores (por si hay empate)
+ganadores = []
+for auto, distancia in distancias.items():
+if distancia == distancia_maxima:
+ganadores.append(auto)
+# Mostrar resultados finales
+print("\n--- RESULTADOS FINALES ---")
+for auto, distancia in distancias.items():
+print(f"{auto}: {distancia} metros")
+# Mostrar ganador o empate
+if len(ganadores) == 1:
+print(f"\nEl ganador es {ganadores[0]} "
+f"con {distancia_maxima} metros.")
+else:
+print("\nHubo un empate entre:")
+for ganador in ganadores:
+print(ganador)
+print(f"Todos con {distancia_maxima} metros.")
