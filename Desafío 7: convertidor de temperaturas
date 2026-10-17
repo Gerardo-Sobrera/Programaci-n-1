@@ -1,0 +1,9 @@
+No# Solicitar temperatura en grados Celsius
+celsius = float(input("Ingrese la temperatura en grados Celsius: "))
+# Conversión a Fahrenheit
+fahrenheit = (celsius * 9 / 5) + 32
+# Conversión a Kelvin
+kelvin = celsius + 273.15
+# Mostrar resultados
+print("Temperatura en Fahrenheit:", fahrenheit)
+print("Temperatura en Kelvin:", kelvin)
