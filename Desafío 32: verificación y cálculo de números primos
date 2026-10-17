@@ -1,0 +1,58 @@
+```python
+import math
+def es_primo(numero: int) -> bool:
+"""
+Evalúa si un número entero es primo.
+"""
+# Los números menores o iguales a 1 no son primos
+if numero <= 1:
+return False
+# El 2 es el único número primo par
+if numero == 2:
+return True
+# Descartar todos los demás números pares
+if numero % 2 == 0:
+return False
+# Evaluar divisores impares desde 3 hasta la raíz cuadrada del número
+limite_busqueda = int(math.isqrt(numero))
+for i in range(3, limite_busqueda + 1, 2):
+if numero % i == 0:
+return False # Divisor encontrado, no es primo
+return True # Es primo
+def contar_primos_en_lista(lista_numeros: list) -> int:
+"""
+Cuenta la cantidad de números primos en una lista.
+"""
+contador = 0
+for num in lista_numeros:
+# Validación defensiva por si la lista contiene tipos no enteros
+if isinstance(num, int):
+if es_primo(num):
+contador += 1
+return contador
+def main():
+# Función principal que integra las soluciones del desafío
+print("==================================================")
+print(" RESULTADOS DEL DESAFÍO 32: NÚMEROS PRIMOS ")
+print("==================================================")
+
+# 1. Prueba Unitaria de Verificación de Primalidad
+num_prueba = 29
+resultado_individual = es_primo(num_prueba)
+print(f"¿El número {num_prueba} es primo?: {resultado_individual}")
+num_prueba_falso = 15
+resultado_falso = es_primo(num_prueba_falso)
+print(f"¿El número {num_prueba_falso} es primo?: {resultado_falso}")
+print("-" * 50)
+# 2. Prueba con una lista de números
+mi_lista = [1, 2, 3, 4, 11, 15, 17, 20, 23, 29, 30, 37]
+print(f"Lista de análisis: {mi_lista}")
+cantidad_primos = contar_primos_en_lista(mi_lista)
+print(f"Cantidad de números primos detectados: {cantidad_primos}")
+# Mostrar cuáles son específicamente para verificación visual
+primos_encontrados = [x for x in mi_lista if es_primo(x)]
+print(f"Números primos en la lista: {primos_encontrados}")
+print("==================================================")
+if __name__ == "__main__":
+main()
+```
