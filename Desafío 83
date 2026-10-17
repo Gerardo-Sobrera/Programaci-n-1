@@ -1,0 +1,66 @@
+Python
+def busqueda_binaria_estudiantes(lista_estudiantes, estudiante_buscado):
+    """Realiza una búsqueda binaria para encontrar un estudiante en una lista 
+    ordenada alfabéticamente. 
+    
+    Retorna el índice si lo encuentra, o -1 si no está.
+    """
+    inicio = 0
+    fin = len(lista_estudiantes) - 1
+
+    while inicio <= fin:
+        medio = (inicio + fin) // 2
+        
+        # En Python, los strings se pueden comparar directamente con operadores relacionales (<, >, ==)
+        if lista_estudiantes[medio] == estudiante_buscado:
+            return medio
+        elif estudiante_buscado < lista_estudiantes[medio]:
+            # El estudiante está en la mitad izquierda
+            fin = medio - 1
+        else:
+            # El estudiante está en la mitad derecha
+            inicio = medio + 1
+
+    # Si el bucle termina sin encontrar el elemento, retorna -1
+    return -1
+
+
+def main():
+    # Lista de estudiantes ordenada alfabéticamente
+    estudiantes = [
+        "Ana Gómez",
+        "Carlos Pérez",
+        "Daniela Ruiz",
+        "Elena Torres",
+        "Javier Morales",
+        "Lucía Fernández",
+        "Mateo Silva",
+        "Sofía Castro"
+    ]
+
+    print("--- Lista de Estudiantes en el Sistema ---")
+    for i, estudiante in enumerate(estudiantes):
+        print(f"Índice {i}: {estudiante}")
+
+    # Casos de prueba
+    buscado_1 = "Elena Torres"     # Estudiante existente
+    buscado_2 = "Pedro Picapiedra" # Estudiante no existente
+
+    print("\n--- Caso 1: Buscar estudiante existente ---")
+    resultado_1 = busqueda_binaria_estudiantes(estudiantes, buscado_1)
+    if resultado_1 != -1:
+        print(f"¡Éxito! El estudiante '{buscado_1}' fue encontrado en la posición (índice) {resultado_1}.")
+    else:
+        print(f"El estudiante '{buscado_1}' no se encuentra en la lista.")
+
+    print("\n--- Caso 2: Buscar estudiante no existente ---")
+    resultado_2 = busqueda_binaria_estudiantes(estudiantes, buscado_2)
+    if resultado_2 != -1:
+        print(f"¡Éxito! El estudiante '{buscado_2}' fue encontrado en la posición {resultado_2}.")
+    else:
+        print(f"Aviso: El estudiante '{buscado_2}' no se encuentra en la lista de la clase.")
+
+
+if __name__ == "__main__":
+    main()
+
