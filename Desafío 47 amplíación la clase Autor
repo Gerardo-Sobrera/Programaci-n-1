@@ -1,0 +1,84 @@
+Python
+class Autor:
+    """Clase que representa a un autor y la gestión de sus obras bibliográficas."""
+
+    def __init__(self, nombre: str, nacionalidad: str):
+        """Inicializa los atributos del autor y una lista vacía para sus libros."""
+        self.nombre = nombre
+        self.nacionalidad = nacionalidad
+        self.libros = []  # Lista interna para almacenar los títulos de los libros
+
+    def agregar_libro(self, titulo: str) -> bool:
+        """Añade un nuevo libro a la lista del autor si no está duplicado."""
+        titulo_limpio = titulo.strip()
+        
+        # Evitamos agregar títulos vacíos
+        if not titulo_limpio:
+            print(f'⚠ El título del libro no puede estar vacío.')
+            return False
+
+        # Evitamos duplicados (insensible a mayúsculas/minúsculas)
+        if any(libro.lower() == titulo_limpio.lower() for libro in self.libros):
+            print(f'⚠ El libro "{titulo_limpio}" ya existe en la lista de {self.nombre}.')
+            return False
+
+        self.libros.append(titulo_limpio)
+        print(f'✔ Libro "{titulo_limpio}" agregado con éxito a {self.nombre}.')
+        return True
+
+    def eliminar_libro(self, titulo: str) -> bool:
+        """Remueve un libro de la lista del autor buscando por su título."""
+        titulo_limpio = titulo.strip().lower()
+        
+        for libro in self.libros:
+            if libro.lower() == titulo_limpio:
+                self.libros.remove(libro)
+                print(f'✔ Libro "{libro}" eliminado con éxito de {self.nombre}.')
+                return True
+
+        print(f'✖ No se encontró el libro "{titulo}" en la lista de {self.nombre}.')
+        return False
+
+    def mostrar_obras(self):
+        """Imprime la lista completa de libros publicados por el autor."""
+        print(f"\n--- Obras de {self.nombre} ({self.nacionalidad}) ---")
+        if not self.libros:
+            print("No hay libros registrados para este autor.")
+            return
+        
+        for i, libro in enumerate(self.libros, 1):
+            print(f"  {i}. {libro}")
+        print("-" * (30 + len(self.nombre)))
+
+
+# ==========================================
+# PRUEBAS Y VERIFICACIÓN DE LA CLASE
+# ==========================================
+
+if __name__ == "__main__":
+    # 1. Instanciación del autor (Comprobación de inicialización)
+    autor1 = Autor("Gabriel García Márquez", "Colombiano")
+
+    # 2. Prueba del método agregar_libro
+    print("=== 1. AGREGANDO LIBROS ===")
+    autor1.agregar_libro("Cien años de soledad")
+    autor1.agregar_libro("El amor en los tiempos del cólera")
+    autor1.agregar_libro("Crónica de una muerte anunciada")
+    
+    # Intento de duplicado para validar control de errores
+    autor1.agregar_libro("Cien años de soledad")
+
+    # Visualización de la lista
+    autor1.mostrar_obras()
+
+    # 3. Prueba del método eliminar_libro
+    print("\n=== 2. ELIMINANDO LIBROS ===")
+    autor1.eliminar_libro("Crónica de una muerte anunciada")
+    
+    # Intento de eliminar un libro inexistente
+    autor1.eliminar_libro("La hojarasca")
+
+    # 4. Estado final del objeto
+    autor1.mostrar_obras()
+
+
