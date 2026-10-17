@@ -1,0 +1,67 @@
+Python
+from datetime import datetime
+
+
+def obtener_fecha_valida(mensaje: str) -> datetime:
+    """Solicita al usuario una fecha por consola y valida que tenga el formato AAAA-MM-DD."""
+    while True:
+        entrada = input(mensaje).strip()
+        try:
+            # Convierte la cadena de texto a un objeto datetime
+            return datetime.strptime(entrada, "%Y-%m-%d")
+        except ValueError:
+            print(
+                "❌ Formato incorrecto. Por favor, ingresa la fecha como AAAA-MM-DD (ej. 2026-08-12).\n"
+            )
+
+
+def calcular_diferencia_fechas(
+    fecha_inicio: datetime, fecha_fin: datetime
+) -> dict:
+    """Calcula la diferencia exacta entre dos objetos datetime.
+
+    Retorna un diccionario con los días totales y la relación temporal.
+    """
+    diferencia = fecha_fin - fecha_inicio
+    dias_totales = abs(diferencia.days)
+
+    return {
+        "dias_totales": dias_totales,
+        "es_futura": fecha_fin > fecha_inicio,
+        "es_misma_fecha": fecha_fin == fecha_inicio,
+    }
+
+
+def main():
+    print("=" * 50)
+    print(" 📅 CALCULADORA DE DIFERENCIA ENTRE FECHAS 📅")
+    print("=" * 50)
+    print("Por favor, ingresa las fechas en formato AAAA-MM-DD.\n")
+
+    # 1. Entrada de datos
+    fecha_1 = obtener_fecha_valida("Ingresa la primera fecha: ")
+    fecha_2 = obtener_fecha_valida("Ingresa la segunda fecha: ")
+
+    # 2. Cálculo
+    resultado = calcular_diferencia_fechas(fecha_1, fecha_2)
+
+    # 3. Presentación de resultados
+    print("\n" + "-" * 50)
+    print("RESULTADO DEL CÁLCULO:")
+    print(f"• Fecha inicio : {fecha_1.strftime('%d/%m/%Y')}")
+    print(f"• Fecha fin    : {fecha_2.strftime('%d/%m/%Y')}")
+    print(f"• Diferencia   : {resultado['dias_totales']} días")
+
+    if resultado["es_misma_fecha"]:
+        print("• Relación     : Ambas fechas son identicas.")
+    elif resultado["es_futura"]:
+        print("• Relación     : La segunda fecha es POSTERIOR a la primera.")
+    else:
+        print("• Relación     : La segunda fecha es ANTERIOR a la primera.")
+
+    print("-" * 50)
+
+
+if __name__ == "__main__":
+    main()
+
