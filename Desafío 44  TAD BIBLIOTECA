@@ -1,0 +1,77 @@
+Python
+# ==========================================
+# DEFINICIÓN DEL TAD BIBLIOTECA
+# ==========================================
+
+def crear_biblioteca():
+    """Inicializa y retorna una colección vacía de libros."""
+    return []
+
+def agregar_libro(biblioteca, titulo, autor):
+    """Agrega un nuevo libro a la colección."""
+    libro = {"titulo": titulo, "autor": autor}
+    biblioteca.append(libro)
+    print(f'✔ Libro agregado: "{titulo}" de {autor}')
+
+def eliminar_libro(biblioteca, titulo):
+    """Elimina un libro existente buscando por su título."""
+    for libro in biblioteca:
+        if libro["titulo"].lower() == titulo.lower():
+            biblioteca.remove(libro)
+            print(f'✔ Libro eliminado: "{titulo}"')
+            return True
+    print(f'✖ No se encontró el libro "{titulo}" para eliminar.')
+    return False
+
+def buscar_libro(biblioteca, titulo):
+    """Busca y retorna un libro por su título."""
+    for libro in biblioteca:
+        if libro["titulo"].lower() == titulo.lower():
+            print(f'🔍 Libro encontrado -> Título: "{libro["titulo"]}", Autor: {libro["autor"]}')
+            return libro
+    print(f'🔍 No se encontró ningún libro con el título "{titulo}".')
+    return None
+
+def mostrar_libros(biblioteca):
+    """Muestra todos los libros disponibles en la biblioteca."""
+    print("\n--- COLECCIÓN DE LA BIBLIOTECA ---")
+    if not biblioteca:
+        print("La biblioteca está vacía.")
+        return
+    for i, libro in enumerate(biblioteca, 1):
+        print(f'{i}. Título: "{libro["titulo"]}" | Autor: {libro["autor"]}')
+    print("----------------------------------\n")
+
+
+# ==========================================
+# PRUEBA Y VERIFICACIÓN DEL TAD
+# ==========================================
+
+if __name__ == "__main__":
+    # 1. Crear biblioteca
+    mi_biblioteca = crear_biblioteca()
+
+    # 2. Agregar al menos 4 libros
+    print("=== 1. AGREGANDO LIBROS ===")
+    agregar_libro(mi_biblioteca, "Cien años de soledad", "Gabriel García Márquez")
+    agregar_libro(mi_biblioteca, "1984", "George Orwell")
+    agregar_libro(mi_biblioteca, "Don Quijote de la Mancha", "Miguel de Cervantes")
+    agregar_libro(mi_biblioteca, "El principito", "Antoine de Saint-Exupéry")
+
+    # 3. Mostrar colección completa
+    mostrar_libros(mi_biblioteca)
+
+    # 4. Realizar una búsqueda
+    print("=== 2. BÚSQUEDA DE LIBRO ===")
+    buscar_libro(mi_biblioteca, "1984")
+    print()
+
+    # 5. Eliminar un libro
+    print("=== 3. ELIMINANDO LIBRO ===")
+    eliminar_libro(mi_biblioteca, "El principito")
+    print()
+
+    # 6. Mostrar estado final de la biblioteca
+    mostrar_libros(mi_biblioteca)
+
+
