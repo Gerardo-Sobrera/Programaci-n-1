@@ -1,0 +1,39 @@
+import numpy as np
+# 1. Implementación de la estructura del tablero (Matriz de 5x5 con ceros)
+tablero = np.zeros((5, 5), dtype=int)
+# 2. Lógica de colocación aleatoria de barcos
+barcos_colocados = 0
+while barcos_colocados < 3:
+# Generar coordenadas aleatorias entre 0 y 4
+fila = np.random.randint(0, 5)
+columna = np.random.randint(0, 5)
+# Verificar que no haya un barco ya colocado en esa posición
+if tablero[fila, columna] == 0:
+tablero[fila, columna] = 1
+barcos_colocados += 1
+# Opcional: Puedes descomentar la siguiente línea si deseas ver la matriz generada
+# print("Tablero generado:\n", tablero)
+
+# 3. Función de verificación de disparos
+def verificar_disparo(x, y):
+"""
+Verifica si en las coordenadas (x, y) hay un barco o agua.
+x: índice de la fila (0 a 4)
+y: índice de la columna (0 a 4)
+
+"""
+# Validar que las coordenadas estén dentro del rango del tablero de 5x5
+if not (0 <= x < 5 and 0 <= y < 5):
+print(f"Coordenadas ({x}, {y}) fuera de rango. Deben ser valores entre 0 y 4.")
+return
+# Evaluar la posición en la matriz de NumPy utilizando índices
+if tablero[x, y] == 1:
+print(f"¡Disparo en ({x}, {y})! ¡Golpeado! Has hundido un barco. 💥")
+# Opcional: Cambiar a 0 para que no se pueda volver a golpear el mismo barco
+tablero[x, y] = 0
+else:
+print(f"Disparo en ({x}, {y})... ¡Agua! 🌊")
+# --- Demostración/Prueba del juego ---
+print("--- Simulando algunos disparos de prueba ---")
+verificar_disparo(0, 0)
+verificar_disparo(2, 3)
