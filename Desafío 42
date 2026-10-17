@@ -1,0 +1,97 @@
+Python
+def string_to_list(sentence, current_word="", words=None):
+    """
+    Función auxiliar recursiva que divide una oración en una lista de palabras.
+    Reemplaza la necesidad de funciones auxiliares no permitidas.
+    """
+    if words is None:
+        words = []
+
+    # Caso base: Hemos procesado toda la cadena
+    if not sentence:
+        if current_word:
+            words.append(current_word)
+        return words
+
+    char = sentence[0]
+
+    # Si encontramos un espacio, guardamos la palabra actual e iniciamos una nueva
+    if char == " ":
+        if current_word:
+            words.append(current_word)
+        return string_to_list(sentence[1:], "", words)
+    else:
+        # Acumulamos los caracteres de la palabra
+        return string_to_list(sentence[1:], current_word + char, words)
+
+
+def reverse_words_recursive(words):
+    """
+    Función recursiva central que invierte una lista de palabras.
+    """
+    # Caso base: Si la lista está vacía o tiene un solo elemento
+    if len(words) <= 1:
+        return words
+
+    # Paso recursivo: Toma la última palabra y le concatena la inversión del resto
+    return [words[-1]] + reverse_words_recursive(words[:-1])
+
+
+def reverse_sentence(sentence):
+    """
+    Función principal que orquesta el proceso.
+    """
+    if not sentence or not sentence.strip():
+        return sentence
+
+    # 1. Separar la cadena en palabras (Recursivo)
+    word_list = string_to_list(sentence)
+
+    # 2. Invertir la lista de palabras (Recursivo)
+    reversed_list = reverse_words_recursive(word_list)
+
+    # 3. Unir las palabras con un espacio
+    return " ".join(reversed_list)
+
+
+Pruebas y verificación
+Veamos cómo funciona la función con diferentes oraciones de prueba:
+
+
+
+Python
+# Casos de prueba
+casos = [
+    "Hola mundo desde Python",
+    "El desafío 42 es recursivo",
+    "Python",
+    "   Espacios   extra   entre   palabras   ",
+    "",
+]
+
+for oracion in casos:
+    resultado = reverse_sentence(oracion)
+    print(f"Entrada:   '{oracion}'")
+    print(f"Resultado: '{resultado}'\n")
+
+
+Salida esperada:
+
+
+
+Plaintext
+Entrada:   'Hola mundo desde Python'
+Resultado: 'Python desde mundo Hola'
+
+Entrada:   'El desafío 42 es recursivo'
+Resultado: 'recursivo es 42 desafío El'
+
+Entrada:   'Python'
+Resultado: 'Python'
+
+Entrada:   '  Espacios   extra   entre   palabras   '
+Resultado: 'palabras entre extra Espacios'
+
+Entrada:   ''
+Resultado: ''
+
