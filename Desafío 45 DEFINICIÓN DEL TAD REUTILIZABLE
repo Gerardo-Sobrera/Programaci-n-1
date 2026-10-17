@@ -1,0 +1,65 @@
+Python
+# ==========================================
+# DEFINICIÓN DEL TAD REUTILIZABLE
+# ==========================================
+
+def crear_biblioteca():
+    return []
+
+def agregar_libro(biblioteca, titulo, autor):
+    libro = {"titulo": titulo, "autor": autor}
+    biblioteca.append(libro)
+
+def eliminar_libro(biblioteca, titulo):
+    for libro in biblioteca:
+        if libro["titulo"].lower() == titulo.lower():
+            biblioteca.remove(libro)
+            return True
+    return False
+
+def buscar_libro(biblioteca, titulo):
+    for libro in biblioteca:
+        if libro["titulo"].lower() == titulo.lower():
+            return libro
+    return None
+
+def mostrar_libros(biblioteca, nombre_biblioteca="Biblioteca"):
+    print(f"\n--- {nombre_biblioteca.upper()} ---")
+    if not biblioteca:
+        print("La biblioteca está vacía.")
+        return
+    for i, libro in enumerate(biblioteca, 1):
+        print(f'{i}. Título: "{libro["titulo"]}" | Autor: {libro["autor"]}')
+    print("-" * (len(nombre_biblioteca) + 8))
+
+
+# ==========================================
+# PRUEBA CON DOS BIBLIOTECAS INDEPENDIENTES
+# ==========================================
+
+if __name__ == "__main__":
+    # Instanciamos dos colecciones independientes
+    biblio_central = crear_biblioteca()
+    biblio_campus = crear_biblioteca()
+
+    # 1. Agregar libros
+    agregar_libro(biblio_central, "Cien años de soledad", "Gabriel García Márquez")
+    agregar_libro(biblio_central, "1984", "George Orwell")
+    agregar_libro(biblio_central, "Don Quijote de la Mancha", "Miguel de Cervantes")
+
+    agregar_libro(biblio_campus, "Clean Code", "Robert C. Martin")
+    agregar_libro(biblio_campus, "Python Crash Course", "Eric Matthes")
+    agregar_libro(biblio_campus, "Introduction to Algorithms", "Thomas H. Cormen")
+
+    # 2. Búsqueda independiente
+    hallado = buscar_libro(biblio_campus, "Clean Code")
+    if hallado:
+        print(f'✔ Encontrado en Campus: "{hallado["titulo"]}" de {hallado["autor"]}')
+
+    # 3. Eliminar sin interferir entre bibliotecas
+    eliminar_libro(biblio_central, "1984")
+
+    # 4. Mostrar contenidos finales
+    mostrar_libros(biblio_central, "Biblioteca Central")
+    mostrar_libros(biblio_campus, "Biblioteca Campus Norte")
+
