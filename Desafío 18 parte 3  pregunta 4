@@ -1,0 +1,3 @@
+nuevos_productos = ["frutillas", "apio", "papas"]
+inventario.extend(nuevos_productos)
+print(inventario)
