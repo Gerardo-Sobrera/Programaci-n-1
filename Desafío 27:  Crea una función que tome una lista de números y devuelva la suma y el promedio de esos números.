@@ -1,0 +1,23 @@
+def calcular_suma_y_promedio(lista_numeros):
+    """Calcula la suma y el promedio de los elementos de una lista.
+    Retorna una tupla con ambos valores: (suma, promedio).
+    """
+    # Validar si la lista está vacía para prevenir errores de división por cero
+    if not lista_numeros:
+        return 0, 0
+    
+    suma_total = sum(lista_numeros)
+    promedio = suma_total / len(lista_numeros)
+    
+    return suma_total, promedio
+
+# --- Bloque principal de ejecución ---
+if __name__ == "__main__":
+    numeros = [12, 18, 25, 30, 45]
+    
+    suma, promedio = calcular_suma_y_promedio(numeros)
+    
+    print("--- RESULTADOS DEL CÁLCULO ---")
+    print(f"Lista evaluada : {numeros}")
+    print(f"Suma total     : {suma}")
+    print(f"Promedio final : {promedio:.2f}")
