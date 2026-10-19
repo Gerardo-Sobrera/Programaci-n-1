@@ -1,0 +1,8 @@
+def suma_primeros_naturales(n):
+    # Utiliza la fórmula matemática directa n * (n + 1) // 2
+    return n * (n + 1) // 2
+
+# Ejemplo de uso
+n = int(input("Ingrese un número natural n: "))
+resultado = suma_primeros_naturales(n)
+print(f"La suma de los primeros {n} números naturales es: {resultado}")
