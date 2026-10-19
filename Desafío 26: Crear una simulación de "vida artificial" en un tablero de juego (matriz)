@@ -1,0 +1,82 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.animation as animation
+
+def crear_tablero(n, m, patron_inicial=None):
+    """Crea un tablero de dimensiones n x m. 
+    Si se proporciona un patrón inicial, lo coloca en el centro; 
+    de lo contrario, genera un tablero aleatorio.
+    """
+    tablero = np.zeros((n, m), dtype=int)
+    
+    if patron_inicial is not None:
+        # Colocar un patrón predefinido (ej. un planeador o oscilador) en el centro
+        ph, pw = patron_inicial.shape
+        start_n = (n - ph) // 2
+        start_m = (m - pw) // 2
+        tablero[start_n:start_n+ph, start_m:start_m+pw] = patron_inicial
+    else:
+        # Generar estado aleatorio (1 vivo, 0 muerto)
+        tablero = np.random.choice([0, 1], size=(n, m), p=[0.8, 0.2])
+        
+    return tablero
+
+def actualizar_tablero(tablero):
+    """Aplica las reglas del Juego de la Vida de Conway para la siguiente generación."""
+    n, m = tablero.shape
+    nuevo_tablero = tablero.copy()
+    
+    for i in range(n):
+        for j in range(m):
+            # Contar los 8 vecinos considerando los bordes de forma toroidal (conecta extremos)
+            vecinos_vivos = 0
+            for di in [-1, 0, 1]:
+                for dj in [-1, 0, 1]:
+                    if di == 0 and dj == 0:
+                        continue
+                    ni, nj = (i + di) % n, (j + dj) % m
+                    vecinos_vivos += tablero[ni, nj]
+            
+            # Reglas del juego
+            # 1. Una celda viva con menos de 2 o más de 3 vecinos muere
+            if tablero[i, j] == 1:
+                if vecinos_vivos < 2 or vecinos_vivos > 3:
+                    nuevo_tablero[i, j] = 0
+            # 2. Una celda muerta con exactamente 3 vecinos cobra vida
+            else:
+                if vecinos_vivos == 3:
+                    nuevo_tablero[i, j] = 1
+                    
+    return nuevo_tablero
+
+# --- Configuración y Ejecución de la Simulación ---
+if __name__ == "__main__":
+    # Dimensiones del tablero
+    N, M = 50, 50
+    
+    # Patrón clásico de prueba: Un planeador (Glider)
+    glider = np.array([
+        [0, 1, 0],
+        [0, 0, 1],
+        [1, 1, 1]
+    ])
+    
+    # Inicializar el tablero con el planeador
+    tablero_actual = crear_tablero(N, M, patron_inicial=glider)
+    
+    # Configuración de la visualización con Matplotlib
+    fig, ax = plt.subplots(figsize=(6, 6))
+    img = ax.imshow(tablero_actual, cmap='binary')
+    ax.set_title("Juego de la Vida de Conway")
+    ax.axis('off')
+    
+    def actualizar_animacion(frame):
+        global tablero_actual
+        tablero_actual = actualizar_tablero(tablero_actual)
+        img.set_data(tablero_actual)
+        return [img]
+    
+    # Crear animación (actualiza cada 200 milisegundos)
+    ani = animation.FuncAnimation(fig, actualizar_animacion, frames=100, interval=200, blit=True)
+    
+    plt.show()
