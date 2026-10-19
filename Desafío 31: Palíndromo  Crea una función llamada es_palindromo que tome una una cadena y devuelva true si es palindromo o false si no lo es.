@@ -1,0 +1,21 @@
+def es_palindromo(cadena):
+    """Toma una cadena y devuelve True si es palíndromo o False si no lo es.
+    Ignora espacios, mayúsculas y signos de puntuación para mayor precisión.
+    """
+    # 1. Convertimos todo a minúsculas y filtramos solo los caracteres alfanuméricos
+    cadena_limpia = "".join(caracter for caracter in cadena.lower() if caracter.isalnum())
+    
+    # 2. Comparamos la cadena limpia con su versión invertida ([::-1])
+    return cadena_limpia == cadena_limpia[::-1]
+
+# --- Bloque principal de ejecución ---
+if __name__ == "__main__":
+    # Casos de prueba
+    palabra_1 = "reconocer"
+    frase_2 = "Anita lava la tina"
+    palabra_3 = "Programación"
+    
+    print("--- VERIFICACIÓN DE PALÍNDROMOS ---")
+    print(f"¿'{palabra_1}' es palíndromo?: {es_palindromo(palabra_1)}")
+    print(f"¿'{frase_2}' es palíndromo?: {es_palindromo(frase_2)}")
+    print(f"¿'{palabra_3}' es palíndromo?: {es_palindromo(palabra_3)}")
