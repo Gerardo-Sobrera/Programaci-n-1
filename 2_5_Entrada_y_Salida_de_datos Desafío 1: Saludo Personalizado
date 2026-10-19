@@ -1,0 +1,4 @@
+nombre = input("Por favor, ingrese su nombre: ")
+ciudad = input("Por favor, ingrese su ciudad de origen: ")
+
+print(f"¡Hola, {nombre}! Qué alegría saludarte desde la hermosa ciudad de {ciudad}.")
