@@ -1,0 +1,28 @@
+def analizar_calificaciones(lista_notas):
+    """Cuenta la cantidad de estudiantes aprobados y desaprobados 
+    basándose en una calificación mínima de 7.
+    """
+    aprobados = 0
+    desaprobados = 0
+    
+    # Bucle para recorrer cada calificación de la lista
+    for nota in lista_notas:
+        # Condicional para evaluar si la nota es aprobatoria o desaprobatoria
+        if nota >= 7:
+            aprobados += 1
+        else:
+            desaprobados += 1
+            
+    return aprobados, desaprobados
+
+# --- Bloque principal de ejecución ---
+if __name__ == "__main__":
+    # Lista de ejemplo con las calificaciones de los estudiantes
+    calificaciones_estudiantes = [4.5, 7.0, 8.5, 6.0, 9.2, 5.0, 10.0, 6.8]
+    
+    total_aprobados, total_desaprobados = analizar_calificaciones(calificaciones_estudiantes)
+    
+    print("--- ANÁLISIS DE CALIFICACIONES ---")
+    print(f"Calificaciones registradas: {calificaciones_estudiantes}")
+    print(f"Cantidad de estudiantes aprobados (≥ 7)  : {total_aprobados}")
+    print(f"Cantidad de estudiantes desaprobados (< 7): {total_desaprobados}")
