@@ -1,0 +1,15 @@
+def capitalizar_palabras(cadena):
+    """Toma una cadena de texto y devuelve la misma cadena
+    con el primer carácter de cada palabra en mayúsculas.
+    """
+    # El método .title() convierte en mayúscula la primera letra de cada palabra de forma automática
+    return cadena.title()
+
+# --- Bloque principal de ejecución ---
+if __name__ == "__main__":
+    texto_original = "programar en python es divertido y muy útil."
+    texto_modificado = capitalizar_palabras(texto_original)
+    
+    print("--- RESULTADO DEL DESAFÍO ---")
+    print(f"Texto original  : {texto_original}")
+    print(f"Texto modificado: {texto_modificado}")
