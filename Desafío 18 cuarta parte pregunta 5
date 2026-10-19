@@ -1,0 +1,4 @@
+if "papas" in inventario:
+    print("Sí, las papas están en el inventario.")
+else:
+    print("No, las papas no se encuentran en el inventario.")
