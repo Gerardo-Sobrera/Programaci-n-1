@@ -1,0 +1,11 @@
+# Definimos las calificaciones
+nota1 = 85
+nota2 = 90
+nota3 = 78
+
+# Calculamos el promedio sumando las notas y dividiendo entre la cantidad total
+cantidad_notas = 3
+suma_notas = nota1 + nota2 + nota3
+promedio = suma_notas / cantidad_notas
+
+print(f"El promedio final es: {promedio}")
