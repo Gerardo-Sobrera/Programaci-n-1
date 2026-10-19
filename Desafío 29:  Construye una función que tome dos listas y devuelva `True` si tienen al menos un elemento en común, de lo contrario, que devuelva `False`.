@@ -1,0 +1,21 @@
+def tienen_elemento_en_comun(lista1, lista2):
+    """Toma dos listas y devuelve True si tienen al menos un elemento en común, 
+    de lo contrario, devuelve False.
+    """
+    # Convertimos ambas listas en conjuntos (sets) y utilizamos .isdisjoint()
+    # isdisjoint() devuelve True si las listas NO tienen elementos en común.
+    # Por lo tanto, usamos 'not' para invertir el resultado y obtener True si SÍ comparten elementos.
+    return not set(lista1).isdisjoint(set(lista2))
+
+# --- Bloque principal de ejecución ---
+if __name__ == "__main__":
+    lista_a = [1, 2, 3, 4, 5]
+    lista_b = [5, 6, 7, 8, 9]
+    lista_c = [10, 20, 30]
+    
+    resultado_1 = tienen_elemento_en_comun(lista_a, lista_b) # Comparte el número 5
+    resultado_2 = tienen_elemento_en_comun(lista_a, lista_c) # No comparten elementos
+    
+    print("--- RESULTADOS DE LA VERIFICACIÓN ---")
+    print(f"¿Lista A y Lista B tienen elementos en común?: {resultado_1}")
+    print(f"¿Lista A y Lista C tienen elementos en común?: {resultado_2}")
