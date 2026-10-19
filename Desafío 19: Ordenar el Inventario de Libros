@@ -1,0 +1,7 @@
+codigos_originales = [105, 302, 201, 504, 403]
+
+# Se ordenan de forma decreciente creando una nueva lista
+codigos_ordenados = sorted(codigos_originales, reverse=True)
+
+print("Lista original intacta :", codigos_originales)
+print("Nueva lista decreciente:", codigos_ordenados)
