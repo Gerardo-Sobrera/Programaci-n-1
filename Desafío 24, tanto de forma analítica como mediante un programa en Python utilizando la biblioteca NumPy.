@@ -1,0 +1,21 @@
+import numpy as np
+
+def resolver_rango_matriz():
+    # Definir la matriz A
+    A = np.array([[1, 2, 3],
+                  [4, 5, 6],
+                  [7, 8, 9]])
+    
+    # Calcular la matriz resultante (A + A^T)
+    matriz_resultante = A + A.T
+    
+    # Calcular el rango de la matriz resultante utilizando NumPy
+    rango = np.linalg.matrix_rank(matriz_resultante)
+    
+    print("--- MATRIZ RESULTANTE (A + A^T) ---")
+    print(matriz_resultante)
+    print(f"\nEl rango de la matriz resultante es: {rango}")
+
+# Bloque principal de ejecución
+if __name__ == "__main__":
+    resolver_rango_matriz()
