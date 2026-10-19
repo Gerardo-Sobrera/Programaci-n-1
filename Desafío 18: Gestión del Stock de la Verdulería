@@ -1,0 +1,5 @@
+Pregunta 1: ¿Cuántos tipos de productos hay en el inventario inicial?
+Respuesta: Hay un total de 7 tipos de productos diferentes en el inventario.
+
+Pregunta 2: ¿Qué producto está en la tercera posición del inventario?
+Respuesta: El producto que se encuentra en la tercera posición es "zanahorias" (teniendo en cuenta que en programación el conteo de los índices suele comenzar en 0, la posición 3 corresponde al índice 2: inventario[2]).
