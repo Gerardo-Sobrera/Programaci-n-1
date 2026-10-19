@@ -1,0 +1,9 @@
+# Lista de números que representan códigos ASCII
+codigos_ascii = [72, 111, 108, 97] # Corresponde a 'H', 'o', 'l', 'a'
+
+# Conversión usando la función chr()
+caracteres = [chr(codigo) for codigo in codigos_ascii]
+
+print("Números originales:", codigos_ascii)
+print("Caracteres ASCII :", caracteres)
+print("Texto unido      :", "".join(caracteres))
