@@ -1,0 +1,5 @@
+nota_minima = min(notas)
+nota_maxima = max(notas)
+
+print(f"Nota más baja: {nota_minima}")
+print(f"Nota más alta: {nota_maxima}")
