@@ -1,0 +1,12 @@
+# Definir la temperatura inicial en grados Celsius
+celsius = 25.0  # Puedes modificar este valor según lo necesites
+
+# Realizar conversiones directamente al asignar los valores a las variables
+fahrenheit = (celsius * 9 / 5) + 32
+kelvin = celsius + 273.15
+
+# Mostrar los resultados en pantalla
+print("--- CONVERSOR DE TEMPERATURAS ---")
+print(f"Temperatura en Celsius   : {celsius:.2f} °C")
+print(f"Temperatura en Fahrenheit: {fahrenheit:.2f} °F")
+print(f"Temperatura en Kelvin    : {kelvin:.2f} K")
