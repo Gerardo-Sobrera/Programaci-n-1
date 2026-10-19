@@ -1,0 +1,68 @@
+# ==========================================
+# NIVEL 1: COMPONENTES BÁSICOS (Funciones)
+# ==========================================
+
+def agregar_estudiante(lista_estudiantes, id_estudiante, nombre):
+    """Agrega un nuevo estudiante a la lista."""
+    estudiante = {"id": id_estudiante, "nombre": nombre}
+    lista_estudiantes.append(estudiante)
+    print(f"Estudiante '{nombre}' agregado exitosamente.")
+
+def eliminar_estudiante(lista_estudiantes, id_estudiante):
+    """Elimina un estudiante de la lista según su ID."""
+    for estudiante in lista_estudiantes:
+        if estudiante["id"] == id_estudiante:
+            lista_estudiantes.remove(estudiante)
+            print(f"Estudiante con ID {id_estudiante} eliminado exitosamente.")
+            return
+    print(f"No se encontró un estudiante con el ID {id_estudiante}.")
+
+def mostrar_estudiantes(lista_estudiantes):
+    """Muestra la lista completa de estudiantes registrados."""
+    if not lista_estudiantes:
+        print("La lista de estudiantes está vacía.")
+    else:
+        print("\n--- LISTA DE ESTUDIANTES ---")
+        for estudiante in lista_estudiantes:
+            print(f"ID: {estudiante['id']} | Nombre: {estudiante['nombre']}")
+        print("-----------------------------\n")
+
+
+# ==========================================
+# NIVEL 2: INTEGRACIÓN Y SISTEMA PRINCIPAL
+# ==========================================
+
+def sistema_gestion():
+    """Función principal que integra las funciones anteriores en un menú interactivo."""
+    base_datos_estudiantes = []
+    
+    while True:
+        print("\n=== SISTEMA DE GESTIÓN DE ESTUDIANTES ===")
+        print("1. Agregar estudiante")
+        print("2. Eliminar estudiante")
+        print("3. Mostrar estudiantes")
+        print("4. Salir")
+        
+        opcion = input("Seleccione una opción (1-4): ")
+        
+        if opcion == "1":
+            id_est = input("Ingrese el ID del estudiante: ")
+            nombre_est = input("Ingrese el nombre del estudiante: ")
+            agregar_estudiante(base_datos_estudiantes, id_est, nombre_est)
+            
+        elif opcion == "2":
+            id_est = input("Ingrese el ID del estudiante a eliminar: ")
+            eliminar_estudiante(base_datos_estudiantes, id_est)
+            
+        elif opcion == "3":
+            mostrar_estudiantes(base_datos_estudiantes)
+            
+        elif opcion == "4":
+            print("Saliendo del sistema de gestión. ¡Hasta luego!")
+            break
+        else:
+            print("Opción inválida. Por favor, intente de nuevo.")
+
+# Ejecución del programa
+if __name__ == "__main__":
+    sistema_gestion()
