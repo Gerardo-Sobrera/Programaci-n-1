@@ -1,0 +1,3 @@
+notas = [85, 90, 78, 85, 92, 60, 75]
+promedio = sum(notas) / len(notas)
+print(f"Promedio de la clase: {promedio:.2f}")
