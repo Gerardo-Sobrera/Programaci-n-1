@@ -1,0 +1,20 @@
+def verificar_multiplos(numero):
+    """Verifica si un número dado es múltiplo de 2, 3, 5, 7, 9, 10 y 11."""
+    divisores = [2, 3, 5, 7, 9, 10, 11]
+    
+    print(f"--- Análisis de múltiplos para el número {numero} ---")
+    
+    for divisor in divisores:
+        # Evaluamos si el residuo de la división es igual a 0 usando el operador módulo
+        es_multiplo = (numero % divisor == 0)
+        
+        # Asignamos "Sí" o "No" según el resultado de la comparación lógica
+        resultado = "Sí" if es_multiplo else "No"
+        
+        print(f"¿Es {numero} múltiplo de {divisor}? {resultado}")
+
+# Bloque principal de ejecución
+if __name__ == "__main__":
+    # Puedes cambiar este número para probar con otros valores
+    numero_ingresado = 30
+    verificar_multiplos(numero_ingresado)
