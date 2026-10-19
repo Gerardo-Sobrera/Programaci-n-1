@@ -1,0 +1,43 @@
+import random
+
+def simular_carrera():
+    """Simula una carrera de autos durante 10 segundos,
+    calculando distancias aleatorias por segundo y determinando el ganador o empates.
+    """
+    print("--- SIMULACIÓN DE CARRERA DE AUTOS ---")
+    
+    # Lista de autos participantes
+    autos = ["Rayo", "Fénix", "Tornado", "Trueno"]
+    
+    # Diccionario para acumular la distancia total de cada auto (inician en 0)
+    distancias = {auto: 0 for auto in autos}
+    
+    # La carrera dura 10 segundos (10 ciclos del bucle)
+    for segundo in range(1, 11):
+        print(f"\n--- Segundo {segundo} ---")
+        for auto in autos:
+            # Genera una velocidad aleatoria entre 10 y 30 metros por segundo
+            velocidad = random.randint(10, 30)
+            distancias[auto] += velocidad
+            print(f"{auto} avanzó a una velocidad de {velocidad} m/s (Distancia acumulada: {distancias[auto]}m)")
+    
+    # Evaluación de resultados al finalizar los 10 segundos
+    print("\n" + "="*40)
+    print("RESULTADOS FINALES DE LA CARRERA")
+    print("="*40)
+    
+    # Encontramos la distancia máxima recorrida
+    max_distancia = max(distancias.values())
+    
+    # Identificamos si hay uno o varios ganadores (en caso de empate)
+    ganadores = [auto for auto, distancia in distancias.items() if distancia == max_distancia]
+    
+    if len(ganadores) == 1:
+        print(f"¡El auto ganador es **{ganadores[0]}** con una distancia total de {max_distancia} metros!")
+    else:
+        lista_ganadores = ", ".join(ganadores)
+        print(f"¡Hubo un empate! Los autos ganadores son: **{lista_ganadores}** con una distancia total de {max_distancia} metros.")
+
+# Bloque principal de ejecución
+if __name__ == "__main__":
+    simular_carrera()
