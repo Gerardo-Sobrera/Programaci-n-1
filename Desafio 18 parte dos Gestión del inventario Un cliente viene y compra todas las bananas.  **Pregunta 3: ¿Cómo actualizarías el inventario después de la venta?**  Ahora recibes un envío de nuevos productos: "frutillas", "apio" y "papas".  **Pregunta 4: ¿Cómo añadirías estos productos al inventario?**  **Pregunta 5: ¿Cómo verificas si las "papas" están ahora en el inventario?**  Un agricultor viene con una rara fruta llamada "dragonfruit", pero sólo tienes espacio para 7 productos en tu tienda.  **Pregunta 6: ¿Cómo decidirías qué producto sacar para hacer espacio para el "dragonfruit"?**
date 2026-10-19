@@ -1,0 +1,4 @@
+inventario = ["manzanas", "bananas", "zanahorias", "espinacas", "brocoli", "cebolla", "kiwis"]
+inventario.remove("bananas")
+print(inventario)
+# Resultado: ['manzanas', 'zanahorias', 'espinacas', 'brocoli', 'cebolla', 'kiwis']
