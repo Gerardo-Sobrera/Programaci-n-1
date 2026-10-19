@@ -1,0 +1,46 @@
+import numpy as np
+import random
+
+def jugar_batalla_naval():
+    """Simula un juego sencillo de Batalla Naval en un tablero de 5x5."""
+    
+    # 1. Crear el tablero de 5x5 lleno de ceros (agua) usando NumPy
+    tablero = np.zeros((5, 5), dtype=int)
+    
+    # 2. Colocar 3 barcos (1) en posiciones aleatorias únicas
+    barcos_colocados = 0
+    while barcos_colocados < 3:
+        x = random.randint(0, 4)
+        y = random.randint(0, 4)
+        # Verificamos que la celda esté vacía antes de colocar el barco
+        if tablero[x, y] == 0:
+            tablero[x, y] = 1
+            barcos_colocados += 1
+
+    print("--- ¡BIENVENIDO A BATALLA NAVAL! ---")
+    print("El tablero de 5x5 ha sido generado y los barcos han sido ocultados.")
+    
+    # 3. Definir la función para realizar los disparos
+    def disparar(x, y):
+        # Validar que las coordenadas estén dentro del rango del tablero (0 a 4)
+        if 0 <= x < 5 and 0 <= y < 5:
+            if tablero[x, y] == 1:
+                print(f"¡Impacto! Has golpeado un barco en la posición ({x}, {y}). 🎯")
+            else:
+                print(f"¡Agua! El disparo en la posición ({x}, {y}) cayó al agua. 🌊")
+        else:
+            print("Error: Las coordenadas deben estar entre 0 y 4.")
+
+    # Ejemplo interactivo o de prueba de disparos:
+    # Puedes probar coordenadas ingresándolas manualmente:
+    print("\nEjemplos de disparos de prueba:")
+    disparar(2, 3)
+    disparar(0, 1)
+    
+    # Si deseas ver dónde estaban ubicados los barcos (para fines de depuración):
+    # print("\nTablero secreto (para el profesor/desarrollador):")
+    # print(tablero)
+
+# Bloque principal de ejecución
+if __name__ == "__main__":
+    jugar_batalla_naval()
