@@ -1,0 +1,36 @@
+def calcular_promedio_mejorado():
+    """Programa que lee una lista de calificaciones ingresadas en una sola línea,
+    separadas por comas, y calcula su promedio de forma eficiente.
+    """
+    print("--- Calculadora de Promedio Mejorada ---")
+    
+    # Solicitamos todas las calificaciones juntas
+    entrada = input("Ingrese las calificaciones separadas por comas (ej: 85, 90, 78.5, 92): ")
+    
+    try:
+        # 1. input.split(',') divide el texto en una lista usando la coma como separador.
+        # 2. nota.strip() elimina los espacios en blanco sobrantes alrededor de cada valor.
+        # 3. float(...) convierte cada elemento de texto en un número decimal.
+        calificaciones = [float(nota.strip()) for nota in entrada.split(",") if nota.strip()]
+        
+        # Validamos que la lista no esté vacía
+        if not calificaciones:
+            print("Error: No se ingresaron calificaciones válidas.")
+            return
+            
+        # Cálculo del promedio
+        suma_total = sum(calificaciones)
+        promedio = suma_total / len(calificaciones)
+        
+        # Resultados
+        print("\n--- Resultados ---")
+        print(f"Calificaciones ingresadas: {calificaciones}")
+        print(f"Total de calificaciones  : {len(calificaciones)}")
+        print(f"El promedio final es     : {promedio:.2f}")
+        
+    except ValueError:
+        print("Error: Asegúrese de ingresar únicamente números válidos separados por comas.")
+
+# Bloque principal de ejecución
+if __name__ == "__main__":
+    calcular_promedio_mejorado()
