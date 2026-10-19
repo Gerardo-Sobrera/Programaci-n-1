@@ -1,0 +1,4 @@
+from collections import Counter
+
+# Contamos la frecuencia de cada nota
+con
