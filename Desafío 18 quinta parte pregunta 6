@@ -1,0 +1,7 @@
+# Si superamos el límite, retiramos el primer producto para liberar espacio
+producto_retirado = inventario.pop(0) 
+print(f"Se retiró '{producto_retirado}' para hacer espacio.")
+
+# Añadimos el nuevo producto
+inventario.append("dragonfruit")
+print(inventario)
