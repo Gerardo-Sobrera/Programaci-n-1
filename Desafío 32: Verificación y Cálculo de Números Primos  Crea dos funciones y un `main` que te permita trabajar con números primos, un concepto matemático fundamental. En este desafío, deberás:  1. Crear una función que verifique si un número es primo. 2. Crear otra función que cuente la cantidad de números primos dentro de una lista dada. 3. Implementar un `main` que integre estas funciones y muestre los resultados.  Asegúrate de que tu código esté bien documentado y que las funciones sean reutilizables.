@@ -1,0 +1,45 @@
+def es_primo(n):
+    """Verifica si un número entero dado es primo.
+    Retorna True si es primo, de lo contrario False.
+    Un número primo es aquel mayor a 1 que solo es divisible por 1 y por sí mismo.
+    """
+    if n <= 1:
+        return False
+    if n <= 3:
+        return True
+    if n % 2 == 0 or n % 3 == 0:
+        return False
+    
+    # Optimizador: comprobamos divisores hasta la raíz cuadrada del número
+    i = 5
+    while i * i <= n:
+        if n % i == 0 or n % (i + 2) == 0:
+            return False
+        i += 6
+    return True
+
+def contar_primos(lista_numeros):
+    """Toma una lista de números y cuenta cuántos de ellos son primos,
+    apoyándose en la función es_primo().
+    """
+    contador = 0
+    for numero in lista_numeros:
+        if es_primo(numero):
+            contador += 1
+    return contador
+
+# --- Bloque principal de integración (main) ---
+if __name__ == "__main__":
+    print("--- VERIFICACIÓN Y CÁLCULO DE NÚMEROS PRIMOS ---")
+    
+    # 1. Prueba individual de la función es_primo
+    numero_prueba = 29
+    resultado_primo = es_primo(numero_prueba)
+    print(f"¿El número {numero_prueba} es primo?: {resultado_primo}")
+    
+    # 2. Prueba de la función contar_primos con una lista completa
+    numeros_lista = [1, 2, 3, 4, 5, 10, 11, 13, 17, 20, 23, 27, 29]
+    total_primos = contar_primos(numeros_lista)
+    
+    print(f"\nLista evaluada                          : {numeros_lista}")
+    print(f"Cantidad total de números primos en ella: {total_primos}")
