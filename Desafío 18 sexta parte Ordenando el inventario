@@ -1,0 +1,2 @@
+inventario.sort()
+print("Inventario ordenado alfabéticamente:", inventario)
