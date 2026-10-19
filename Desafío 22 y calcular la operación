@@ -1,0 +1,27 @@
+import numpy as np
+
+def resolver_desafio_22():
+    """Calcula la operación matricial (2A + B^T) para las matrices A y B."""
+    
+    # Definir la matriz A
+    A = np.array([[1, 2], 
+                  [3, 4]])
+    
+    # Definir la matriz B
+    B = np.array([[5, 6], 
+                  [7, 8]])
+    
+    # Calcular la operación: 2 multiplicado por A más la transpuesta de B (B.T)
+    resultado = (2 * A) + B.T
+    
+    # Mostrar los resultados
+    print("--- MATRICES ORIGINALES ---")
+    print("Matriz A:\n", A)
+    print("\nMatriz B:\n", B)
+    
+    print("\n--- RESULTADO ---")
+    print("Matriz resultante (2A + B^T):\n", resultado)
+
+# Bloque principal de ejecución
+if __name__ == "__main__":
+    resolver_desafio_22()
