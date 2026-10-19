@@ -1,0 +1,22 @@
+import numpy as np
+
+def resolver_traza_inversa():
+    # Definir la matriz A de 3x3
+    A = np.array([[1, 0, 1],
+                  [4, -1, 4],
+                  [5, 6, 7]])
+    
+    # Calcular la matriz inversa de A (A^-1)
+    A_inv = np.linalg.inv(A)
+    
+    # Calcular la traza de la matriz inversa (suma de la diagonal principal)
+    traza_inv = np.trace(A_inv)
+    
+    print("--- MATRIZ INVERSA ---")
+    print(A_inv)
+    print("\n----------------------------------------")
+    print(f"La traza de la matriz inversa es: {traza_inv:.0f}")
+
+# Bloque principal de ejecución
+if __name__ == "__main__":
+    resolver_traza_inversa()
