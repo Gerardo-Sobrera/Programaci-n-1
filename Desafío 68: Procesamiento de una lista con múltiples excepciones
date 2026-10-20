@@ -1,0 +1,25 @@
+def procesar_lista_valores(lista):
+  print("Iniciando procesamiento de la lista...")
+  for item in lista:
+    try:
+      # Intentamos dividir 100 entre el valor convertido a entero
+      resultado = 100 / int(item)
+      print(f"100 / {item} = {resultado}")
+
+    except ZeroDivisionError:
+      print(f"-> Error: No se puede dividir entre cero (elemento: {item}).")
+    except ValueError:
+      print(
+          f"-> Error: El valor '{item}' no se pudo convertir a un número"
+          " válido."
+      )
+    except TypeError:
+      print(
+          f"-> Error: Tipo de dato no compatible para la operación (elemento:"
+          f" {item})."
+      )
+
+
+# Ejemplo de uso:
+lista_mixta = [10, "hola", 0, 5, "20", None, 2.5]
+procesar_lista_valores(lista_mixta)
