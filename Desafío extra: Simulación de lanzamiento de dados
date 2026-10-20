@@ -1,0 +1,28 @@
+import random
+
+def simular_lanzamiento_dados():
+    """Simula el lanzamiento de dos dados justos de 6 caras utilizando random.choices()."""
+    # Población: las 6 caras posibles de un dado estándar
+    caras_dado = [1, 2, 3, 4, 5, 6]
+    
+    # Seleccionamos 2 elementos (k=2) de la población
+    # Al no pasar el argumento 'weights', la probabilidad para cada cara es igual (dado justo)
+    resultado_dados = random.choices(caras_dado, k=2)
+    
+    return resultado_dados
+
+
+def main():
+    print("--- SIMULADOR DE JUEGO DE MESA: LANZAMIENTO DE DADOS ---")
+    
+    # Simulemos 4 rondas de lanzamientos
+    for ronda in range(1, 5):
+        dados = simular_lanzamiento_dados()
+        dado1, dado2 = dados[0], dados[1]
+        suma_total = sum(dados)
+        
+        print(f"Ronda {ronda}: Dado 1 = {dado1} | Dado 2 = {dado2} -> Suma total: {suma_total}")
+
+
+if __name__ == "__main__":
+    main()
