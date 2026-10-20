@@ -1,0 +1,43 @@
+import os
+
+
+def eliminar_prestamo():
+  nombre_archivo = "prestamos.txt"
+
+  if not os.path.exists(nombre_archivo):
+    print("El archivo de préstamos no existe.")
+    return
+
+  # Leemos todas las líneas del archivo
+  with open(nombre_archivo, "r", encoding="utf-8") as archivo:
+    lineas = archivo.readlines()
+
+  if not lineas:
+    print("El archivo de préstamos está vacío.")
+    return
+
+  print("\nRegistros actuales de préstamos:")
+  for i, linea in enumerate(lineas, 1):
+    print(f"{i}. {linea.strip()}")
+
+  try:
+    opcion = int(
+        input("\nIntroduce el número del registro que deseas eliminar: ")
+    )
+    if 1 <= opcion <= len(lineas):
+      # Eliminamos la línea seleccionada de la lista en memoria (ajustando índice a base 0)
+      eliminado = lineas.pop(opcion - 1)
+
+      # Actualizamos el archivo reescribiendo las líneas restantes
+      with open(nombre_archivo, "w", encoding="utf-8") as archivo:
+        archivo.writelines(lineas)
+
+      print(f"Registro eliminado con éxito: {eliminado.strip()}")
+    else:
+      print("Número de registro fuera de rango.")
+  except ValueError:
+    print("Por favor, introduce un número entero válido.")
+
+
+# Ejemplo de uso:
+# eliminar_prestamo()
