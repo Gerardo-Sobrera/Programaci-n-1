@@ -1,0 +1,41 @@
+class Autor:
+
+  def __init__(self, nombre, nacionalidad):
+    self.__nombre = nombre
+    self.__nacionalidad = nacionalidad
+    self.__libros = []  # Lista privada de libros (Desafío 53)
+
+  # Desafío 54: Getters y setters con @property para nombre
+  @property
+  def nombre(self):
+    return self.__nombre
+
+  @nombre.setter
+  def nombre(self, nuevo_nombre):
+    if nuevo_nombre.strip():
+      self.__nombre = nuevo_nombre
+    else:
+      raise ValueError("El nombre no puede estar vacío.")
+
+  # Getters y setters con @property para nacionalidad
+  @property
+  def nacionalidad(self):
+    return self.__nacionalidad
+
+  @nacionalidad.setter
+  def nacionalidad(self, nueva_nacionalidad):
+    self.__nacionalidad = nueva_nacionalidad
+
+  # Desafío 53: Método para agregar libros a la lista del autor
+  def agregar_libro(self, libro):
+    if isinstance(libro, Libro):
+      self.__libros.append(libro)
+    else:
+      raise TypeError("Solo se pueden agregar instancias de la clase Libro.")
+
+  # Método interno controlado para acceder a los libros (para cumplir con Desafío 55)
+  def obtener_libros_privados(self):
+    return self.__libros
+
+  def obtener_cantidad_libros(self):
+    return len(self.__libros)
