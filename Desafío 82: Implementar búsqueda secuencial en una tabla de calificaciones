@@ -1,0 +1,27 @@
+def buscar_calificacion(matriz, estudiantes, materias, objetivo):
+  # Recorremos filas (estudiantes) y columnas (materias)
+  for i in range(len(matriz)):
+    for j in range(len(matriz[i])):
+      if matriz[i][j] == objetivo:
+        return estudiantes[i], materias[j], (i, j)
+  return None
+
+
+# Datos de prueba
+estudiantes = ["Ana", "Carlos", "Sofía"]
+materias = ["Matemáticas", "Historia", "Programación"]
+calificaciones = [[85, 90, 78], [92, 88, 95], [70, 75, 80]]
+
+calif_buscada = 95
+resultado = buscar_calificacion(
+    calificaciones, estudiantes, materias, calif_buscada
+)
+
+if resultado:
+  est, mat, pos = resultado
+  print(
+      f"¡Encontrado! La calificación {calif_buscada} pertenece a {est} en la"
+      f" materia {mat} (Posición en matriz: {pos})."
+  )
+else:
+  print(f"La calificación {calif_buscada} no se encuentra en la tabla.")
