@@ -1,0 +1,53 @@
+# Componentes para composición (Roles adicionales)
+class RolAdministrador:
+
+  def gestionar_sistema_biblioteca(self):
+    return "Gestionando bases de datos y permisos del sistema."
+
+
+class RolMantenimiento:
+
+  def reparar_infraestructura(self):
+    return "Realizando mantenimiento correctivo en las instalaciones."
+
+
+# Jerarquía base mediante Herencia
+class Empleado:
+
+  def __init__(self, id_emp, nombre):
+    self.id_emp = id_emp
+    self.nombre = nombre
+
+  def fichar_entrada(self):
+    return f"El empleado {self.nombre} ha registrado su entrada."
+
+
+class Gerente(Empleado):
+
+  def __init__(self, id_emp, nombre, departamento):
+    super().__init__(id_emp, nombre)
+    self.departamento = departamento
+
+  def dirigir(self):
+    return f"Gerente {self.nombre} supervisa el departamento {self.departamento}."
+
+
+class Tecnico(Empleado, RolAdministrador):
+  # Herencia múltiple combinando el tipo Empleado y el rol administrativo
+
+  def __init__(self, id_emp, nombre, especialidad):
+    super().__init__(id_emp, nombre)
+    self.especialidad = especialidad
+
+
+class Voluntario(Empleado):
+
+  def __init__(self, id_emp, nombre, horas_semanales):
+    super().__init__(id_emp, nombre)
+    self.horas_semanales = horas_semanales
+
+  def colaborar(self):
+    return (
+        f"El voluntario {self.nombre} apoya con {self.horas_semanales} horas"
+        " semanales."
+    )
