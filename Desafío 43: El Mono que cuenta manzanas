@@ -1,0 +1,15 @@
+def simular_conteo_mono(manzanas_restantes, acumulado_actual=0):
+  """Simula recursivamente al mono distrayéndose, olvidando y sumando las manzanas."""
+  # Caso base: si ya no quedan manzanas en la pila actual
+  if manzanas_restantes <= 0:
+    return acumulado_actual
+
+  # El mono cuenta una manzana, suma al acumulado y avanza
+  # Simbolizamos el reinicio sumando 1 por cada ciclo de conteo que representa la pila
+  return simular_conteo_mono(manzanas_restantes - 1, acumulado_actual + 1)
+
+
+# Ejemplo para simular una pila de 5 manzanas:
+total_contado = simular_conteo_mono(5)
+print(f"El mono terminó contando un total acumulado de: {total_contado}")
+# Salida: El mono terminó contando un total acumulado de: 5
