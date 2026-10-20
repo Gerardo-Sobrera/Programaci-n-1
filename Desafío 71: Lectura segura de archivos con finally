@@ -1,0 +1,26 @@
+def leer_archivo_texto(nombre_archivo):
+  archivo = None
+  try:
+    archivo = open(nombre_archivo, "r", encoding="utf-8")
+    contenido = archivo.read()
+    print("--- Contenido del archivo ---")
+    print(contenido)
+
+  except FileNotFoundError:
+    print(
+        f"Error: El archivo '{nombre_archivo}' no fue encontrado en el sistema."
+    )
+  except IOError:
+    print("Error: Ocurrió un error inesperado al leer el archivo.")
+
+  finally:
+    # Este bloque siempre se ejecuta, asegurando el cierre del archivo si llegó a abrirse
+    if archivo is not None and not archivo.closed:
+      archivo.close()
+      print(f"\n[Sistema]: El archivo '{nombre_archivo}' ha sido cerrado con éxito.")
+    else:
+      print("[Sistema]: No se requirió cierre de archivos.")
+
+
+# Ejemplo de uso:
+leer_archivo_texto("documento_importante.txt")
