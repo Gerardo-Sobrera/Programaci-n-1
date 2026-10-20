@@ -1,0 +1,13 @@
+# Lista de códigos de productos disponibles
+inventario = ["A001", "B002", "C003", "D004", "E005"]
+
+codigo_buscar = input("Introduce el código de producto a buscar: ").strip()
+
+if codigo_buscar in inventario:
+  posicion = inventario.index(codigo_buscar)
+  print(
+      f"El código '{codigo_buscar}' se encuentra en la posición (índice)"
+      f" {posicion}."
+  )
+else:
+  print(f"El código '{codigo_buscar}' no se ha encontrado en el inventario.")
