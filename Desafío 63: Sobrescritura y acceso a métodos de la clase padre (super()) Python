@@ -1,0 +1,26 @@
+class Autor:
+
+  def __init__(self, nombre):
+    self.nombre = nombre
+
+  def biografia(self):
+    return f"Autor: {self.nombre}."
+
+
+class Escritor(Autor):
+
+  def __init__(self, nombre, genero_literario):
+    super().__init__(nombre)
+    self.genero_literario = genero_literario
+
+  def biografia(self):
+    # Accedemos al método biografia de la clase padre usando super()
+    biografia_padre = super().biografia()
+    return f"{biografia_padre} Especializado en el género: {self.genero_literario}."
+
+
+# Instancia y demostración
+escritor = Escritor("Gabriel García Márquez", "Realismo mágico")
+
+# Accediendo al método sobrescrito en la subclase
+print(escritor.biografia())
