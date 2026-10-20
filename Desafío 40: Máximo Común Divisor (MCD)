@@ -1,0 +1,12 @@
+def mcd(a, b):
+  """Calcula el Máximo Común Divisor (MCD) usando el algoritmo de Euclides."""
+  # Caso base: si b es 0, el MCD es a
+  if b == 0:
+    return a
+  # Caso recursivo: el MCD de a y b es el MCD de b y el residuo (a % b)
+  return mcd(b, a % b)
+
+
+# Ejemplo de uso:
+print(mcd(8, 12))  # Salida: 4
+print(mcd(48, 18))  # Salida: 6
