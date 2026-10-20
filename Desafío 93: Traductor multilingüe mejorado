@@ -1,0 +1,38 @@
+def traducir_palabra(palabra_ingles, idiomas_destino):
+    """Traduce una palabra del inglés a una lista de idiomas especificada,
+    manejando errores si la palabra o el idioma no están disponibles.
+    """
+    # Diccionario principal anidado con múltiples palabras e idiomas
+    diccionario = {
+        "hello": {"es": "hola", "fr": "bonjour", "it": "ciao", "de": "hallo"},
+        "sun": {"es": "sol", "fr": "soleil", "it": "sole", "de": "sonne"},
+        "computer": {"es": "computadora", "fr": "ordinateur", "it": "computer", "de": "computer"},
+        "book": {"es": "libro", "fr": "livre", "it": "libro", "de": "buch"}
+    }
+
+    palabra_ingles = palabra_ingles.lower()
+    print(f"\n--- Traducciones para: '{palabra_ingles}' ---")
+
+    if palabra_ingles not in diccionario:
+        print(f"Aviso: La palabra '{palabra_ingles}' no se encuentra en el diccionario.")
+        return
+
+    traducciones_disponibles = diccionario[palabra_ingles]
+
+    for idioma in idiomas_destino:
+        idioma = idioma.lower()
+        if idioma in traducciones_disponibles:
+            print(f"  - [{idioma.upper()}]: {traducciones_disponibles[idioma]}")
+        else:
+            print(f"  - [{idioma.upper()}]: ❌ Traducción no disponible en este idioma.")
+
+
+def main():
+    # Casos de prueba
+    traducir_palabra("sun", ["es", "fr", "it", "de"])
+    traducir_palabra("computer", ["es", "pt"]) # 'pt' no está cargado
+    traducir_palabra("galaxy", ["es", "de"])   # 'galaxy' no está en el diccionario
+
+
+if __name__ == "__main__":
+    main()
