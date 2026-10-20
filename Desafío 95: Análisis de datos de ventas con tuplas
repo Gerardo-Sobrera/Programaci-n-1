@@ -1,0 +1,43 @@
+def analizar_ventas(ventas):
+    ingreso_total = 0
+    cantidades_por_producto = {}
+
+    for id_producto, cantidad, precio_unitario in ventas:
+        # Calcular ingreso de esta venta y acumular al total
+        ingreso_total += cantidad * precio_unitario
+
+        # Acumular la cantidad total vendida por cada producto
+        cantidades_por_producto[id_producto] = (
+            cantidades_por_producto.get(id_producto, 0) + cantidad
+        )
+
+    # Identificar el producto más vendido en términos de cantidad
+    producto_mas_vendido = max(
+        cantidades_por_producto, key=cantidades_por_producto.get
+    )
+    max_cantidad = cantidades_por_producto[producto_mas_vendido]
+
+    return ingreso_total, producto_mas_vendido, max_cantidad
+
+
+def main():
+    # Lista de ventas: (id_producto, cantidad, precio_unitario)
+    registro_ventas = [
+        ("PROD-A", 3, 15.50),
+        ("PROD-B", 10, 5.00),
+        ("PROD-A", 5, 15.50),
+        ("PROD-C", 2, 45.00),
+        ("PROD-B", 4, 5.00),
+    ]
+
+    ingreso, top_producto, top_cantidad = analizar_ventas(registro_ventas)
+
+    print("--- REPORTE DE VENTAS ---")
+    print(f"💰 Ingreso total generado: ${ingreso:.2f}")
+    print(
+        f"🏆 Producto más vendido: {top_producto} con un total de {top_cantidad} unidades."
+    )
+
+
+if __name__ == "__main__":
+    main()
