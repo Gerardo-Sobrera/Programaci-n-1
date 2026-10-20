@@ -1,0 +1,31 @@
+class Musico:
+
+  def instrumento(self):
+    return "Toco un instrumento musical genérico."
+
+
+class Guitarrista(Musico):
+
+  def instrumento(self):
+    return "Toco la guitarra eléctrica."
+
+
+class Baterista(Musico):
+
+  def instrumento(self):
+    return "Toco la batería acústica."
+
+
+# Demostración de polimorfismo
+def presentar_musico(musico):
+  print(musico.instrumento())
+
+
+# Instancias
+musico_generico = Musico()
+guitarrista = Guitarrista()
+baterista = Baterista()
+
+presentar_musico(musico_generico)  # Salida: Toco un instrumento musical genérico.
+presentar_musico(guitarrista)  # Salida: Toco la guitarra eléctrica.
+presentar_musico(baterista)  # Salida: Toco la batería acústica.
