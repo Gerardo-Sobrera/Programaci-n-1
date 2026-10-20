@@ -1,0 +1,33 @@
+def analizar_deportes():
+    # Torneos registrados como conjuntos de atletas
+    torneos = {
+        "Apertura": {"Ana", "Carlos", "Elena", "Lucía", "Pedro"},
+        "Clausura": {"Carlos", "Mateo", "Sofía", "Elena", "Pedro"},
+        "Nacional": {"Ana", "Carlos", "Elena", "Diego", "Pedro"}
+    }
+
+    conjuntos_torneos = list(torneos.values())
+
+    # 1. Identificar atletas que participaron en TODOS los torneos del año (Intersección general)
+    atletas_todos = set.intersection(*conjuntos_torneos)
+
+    # 2. Detectar atletas que participaron EXCLUSIVAMENTE en un único torneo
+    # (Están en un torneo pero no en la unión de los demás torneos)
+    exclusivos_unicos = set()
+    for nombre_torneo, participantes in torneos.items():
+        otros_torneos = set.union(*(t for n, t in torneos.items() if n != nombre_torneo))
+        exclusivos_unicos.update(participantes - otros_torneos)
+
+    # 3. Calcular la cantidad total de atletas ÚNICOS que compitieron (Unión general)
+    atletas_unicos_totales = set.union(*conjuntos_torneos)
+
+    # Mostrar resultados
+    print("--- ANÁLISIS DEPORTIVO ANUAL ---")
+    print(f"🏆 Atletas en TODOS los torneos: {atletas_todos}")
+    print(f"⭐ Atletas exclusivos de un ÚNICO torneo: {exclusivos_unicos}")
+    print(f"📊 Cantidad total de atletas únicos en el año: {len(atletas_unicos_totales)}")
+    print(f"   (Listado completo: {atletas_unicos_totales})")
+
+
+if __name__ == "__main__":
+    analizar_deportes()
