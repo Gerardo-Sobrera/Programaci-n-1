@@ -1,0 +1,28 @@
+import math
+
+
+def calcular_factorial(n):
+  try:
+    # Verificamos si es estrictamente un entero
+    if not isinstance(n, int):
+      raise TypeError("El número ingresado debe ser un número entero.")
+
+    # Verificamos si es negativo
+    if n < 0:
+      raise ValueError("El número no puede ser negativo.")
+
+    # Simulamos o limitamos un tamaño máximo para evitar desbordamientos extremos
+    if n > 1000:
+      raise OverflowError("El número es demasiado grande para ser procesado.")
+
+    return math.factorial(n)
+
+  except (ValueError, TypeError, OverflowError) as e:
+    return f"Error de procesamiento: {e}"
+
+
+# Ejemplos de uso:
+print(calcular_factorial(5))  # Salida: 120
+print(calcular_factorial(-4))  # Salida con error de valor
+print(calcular_factorial(3.5))  # Salida con error de tipo
+print(calcular_factorial(1500))  # Salida con error de desbordamiento
