@@ -1,0 +1,33 @@
+from collections import Counter
+import os
+import re
+
+
+def palabras_mas_comunes(nombre_archivo):
+  if not os.path.exists(nombre_archivo):
+    print(f"El archivo '{nombre_archivo}' no existe.")
+    return
+
+  try:
+    with open(nombre_archivo, "r", encoding="utf-8") as archivo:
+      texto = archivo.read().lower()
+
+    # Extraemos únicamente palabras alfanuméricas usando expresiones regulares (ignora signos de puntuación)
+    palabras = re.findall(r"\b\w+\b", texto)
+
+    # Contamos la frecuencia de cada palabra usando Counter
+    contador = Counter(palabras)
+
+    # Obtenemos las 5 palabras más comunes
+    top_5 = contador.most_common(5)
+
+    print(f"\nLas 5 palabras más comunes en '{nombre_archivo}':")
+    for pos, (palabra, frecuencia) in enumerate(top_5, 1):
+      print(f"{pos}. '{palabra}' -> {frecuencia} veces")
+
+  except Exception as e:
+    print(f"Ocurrió un error al procesar el archivo: {e}")
+
+
+# Ejemplo de uso:
+# palabras_mas_comunes("libros.txt")
