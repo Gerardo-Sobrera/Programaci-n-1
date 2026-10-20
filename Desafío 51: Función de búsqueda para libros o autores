@@ -1,0 +1,37 @@
+class Biblioteca:
+
+  def __init__(self):
+    self.libros = {}  # {isbn: datos_libro}
+    self.autores = {}  # {id_autor: objeto_autor}
+
+  def buscar_libro_por_titulo(self, termino):
+    """Busca libros cuyo título contenga el término ingresado (búsqueda flexible)."""
+    resultados = []
+    for isbn, libro in self.libros.items():
+      if termino.lower() in libro["titulo"].lower():
+        resultados.append({"isbn": isbn, **libro})
+    return resultados
+
+  def buscar_autor(self, nombre_o_apellido):
+    """Busca autores por coincidencia parcial en su nombre o apellido."""
+    resultados = []
+    for id_autor, autor in self.autores.items():
+      if (
+          nombre_o_apellido.lower() in autor.nombre.lower()
+          or nombre_o_apellido.lower() in autor.apellido.lower()
+      ):
+        resultados.append(autor)
+    return resultados
+
+
+# Ejemplo de uso:
+mi_biblioteca = Biblioteca()
+mi_biblioteca.libros["978-3"] = {
+    "titulo": "Cien años de soledad",
+    "autor": "Gabriel García Márquez",
+}
+
+# Realizando una búsqueda
+encontrados = mi_biblioteca.buscar_libro_por_titulo("soledad")
+print(encontrados)
+# Salida: [{'isbn': '978-3', 'titulo': 'Cien años de soledad', 'autor': 'Gabriel García Márquez'}]
