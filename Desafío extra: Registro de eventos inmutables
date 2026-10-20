@@ -1,0 +1,32 @@
+def gestionar_eventos():
+    # Lista de eventos representados como tuplas: (timestamp, usuario, acción)
+    eventos = [
+        ("2026-06-01 08:30", "ana", "login"),
+        ("2026-06-01 08:45", "carlos", "login"),
+        ("2026-06-01 09:00", "ana", "descargar_archivo"),
+        ("2026-06-01 09:15", "elena", "login"),
+        ("2026-06-01 10:00", "carlos", "descargar_archivo"),
+        ("2026-06-01 10:30", "ana", "logout"),
+        ("2026-06-01 11:00", "carlos", "logout"),
+        ("2026-06-01 11:15", "elena", "logout")
+    ]
+
+    # 1. Consultar eventos de un usuario específico
+    usuario_buscado = "ana"
+    print(f"--- Eventos del usuario: {usuario_buscado} ---")
+    eventos_usuario = [e for e in eventos if e[1] == usuario_buscado]
+    for timestamp, _, accion in eventos_usuario:
+        print(f"  [{timestamp}] Acción realizada: {accion}")
+
+    # 2. Contar cuántas veces se realizó cada acción
+    conteo_acciones = {}
+    for _, _, accion in eventos:
+        conteo_acciones[accion] = conteo_acciones.get(accion, 0) + 1
+
+    print("\n--- Conteo total por acción ---")
+    for accion, total in conteo_acciones.items():
+        print(f"  - '{accion}': {total} veces")
+
+
+if __name__ == "__main__":
+    gestionar_eventos()
