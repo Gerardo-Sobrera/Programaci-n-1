@@ -1,0 +1,51 @@
+def consultar_historial(registros, paciente_buscado):
+    """Consulta y retorna el historial médico completo de un paciente específico."""
+    paciente_buscado = paciente_buscado.strip().lower()
+    
+    # Filtramos los registros que coincidan con el paciente (ignorando mayúsculas/minúsculas)
+    historial = [
+        (fecha, diagnostico) for fecha, paciente, diagnostico in registros 
+        if paciente.strip().lower() == paciente_buscado
+    ]
+    return historial
+
+
+def contar_diagnosticos_distintos(registros):
+    """Calcula cuántos diagnósticos únicos o distintos se han registrado en total."""
+    # Extraemos el tercer elemento de cada tupla (el diagnóstico) y lo convertimos en un set
+    diagnosticos_unicos = {diagnostico for _, _, diagnostico in registros}
+    return len(diagnosticos_unicos), diagnosticos_unicos
+
+
+def main():
+    # Almacenar múltiples registros médicos como tuplas inmutables: (fecha, paciente, diagnóstico)
+    registros_medicos = [
+        ("2026-05-10", "Ana Gómez", "Gripe común"),
+        ("2026-05-12", "Carlos Pérez", "Hipertensión"),
+        ("2026-06-01", "Ana Gómez", "Alergia estacional"),
+        ("2026-06-03", "Elena Torres", "Gripe común"),
+        ("2026-06-05", "Carlos Pérez", "Control de rutina"),
+        ("2026-06-10", "Mateo Silva", "Fractura de muñeca")
+    ]
+
+    print("--- SISTEMA DE HISTORIAL MÉDICO INMUTABLE ---")
+    
+    # 1. Consultar historial de un paciente específico
+    paciente_consulta = "Ana Gómez"
+    print(f"\n📋 Historial médico de: {paciente_consulta}")
+    historial_paciente = consultar_historial(registros_medicos, paciente_consulta)
+    
+    if historial_paciente:
+        for fecha, diagnostico in historial_paciente:
+            print(f"  - [{fecha}] Diagnóstico: {diagnostico}")
+    else:
+        print("  No se encontraron registros para este paciente.")
+
+    # 2. Contar diagnósticos distintos registrados en total
+    total_distintos, lista_distintos = contar_diagnosticos_distintos(registros_medicos)
+    print(f"\n📊 Total de diagnósticos distintos registrados: {total_distintos}")
+    print(f"   (Listado único: {', '.join(lista_distintos)})")
+
+
+if __name__ == "__main__":
+    main()
