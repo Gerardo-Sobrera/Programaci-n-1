@@ -1,0 +1,57 @@
+# Estructura de datos anidada para la cadena de tiendas
+sistema_inventario = {
+    "cadena": "RetailPro Global",
+    "tiendas": [
+        {
+            "id_tienda": "T001",
+            "nombre": "Sucursal Centro",
+            "empleados": [
+                {
+                    "id_empleado": "E001",
+                    "nombre": "Ana Pérez",
+                    "cargo": "Gerente",
+                },
+                {
+                    "id_empleado": "E002",
+                    "nombre": "Carlos Gómez",
+                    "cargo": "Cajero",
+                },
+            ],
+            "inventario": {
+                "P001": {
+                    "nombre": "Laptop Gamer",
+                    "precio": 1200.0,
+                    "stock": 10,
+                },
+                "P002": {"nombre": "Mouse Óptico", "precio": 25.5, "stock": 45},
+            },
+            "transacciones": [
+                {
+                    "id_transaccion": "TX-501",
+                    "empleado": "E002",
+                    "items": [{"id_producto": "P002", "cantidad": 2}],
+                    "total": 51.0,
+                }
+            ],
+        },
+        {
+            "id_tienda": "T002",
+            "nombre": "Sucursal Norte",
+            "empleados": [
+                {
+                    "id_empleado": "E003",
+                    "nombre": "Sofía Ruiz",
+                    "cargo": "Gerente",
+                }
+            ],
+            "inventario": {
+                "P001": {
+                    "nombre": "Laptop Gamer",
+                    "precio": 1200.0,
+                    "stock": 5,
+                }
+            },
+            "transacciones": [],
+        },
+    ],
+}
