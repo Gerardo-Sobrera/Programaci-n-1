@@ -1,0 +1,51 @@
+def analizar_concursos():
+    # Listas/Conjuntos de participantes en cada concurso
+    astronomia = {
+        "ana@1001problemas.com", 
+        "carlos@1001problemas.com", 
+        "lucia@1001problemas.com",
+        "elena@1001problemas.com"
+    }
+    
+    matematica = {
+        "carlos@1001problemas.com", 
+        "mateo@1001problemas.com", 
+        "sofia@1001problemas.com",
+        "elena@1001problemas.com"
+    }
+    
+    programacion = {
+        "ana@1001problemas.com", 
+        "carlos@1001problemas.com", 
+        "diego@1001problemas.com", 
+        "sofia@1001problemas.com",
+        "elena@1001problemas.com"
+    }
+
+    # 1. Usuarios que han participado en TODOS los concursos (Intersección general)
+    participaron_todos = astronomia.intersection(matematica, programacion)
+
+    # 2. Usuarios que SOLO han participado en "Programación" (Diferencia de conjuntos)
+    solo_programacion = programacion.difference(astronomia, matematica)
+
+    # 3. Todos los usuarios ÚNICOS que han participado en al menos un concurso (Unión general)
+    todos_unicos = astronomia.union(matematica, programacion)
+
+    # Mostrar resultados
+    print("--- ANÁLISIS DE CONCURSOS @1001problemas.com ---")
+    
+    print("\n1. Usuarios que participaron en TODOS los concursos:")
+    for u in participaron_todos:
+        print(f"   - {u}")
+
+    print("\n2. Usuarios que participaron SOLO en 'Programación':")
+    for u in solo_programacion:
+        print(f"   - {u}")
+
+    print(f"\n3. Total de usuarios únicos en al menos un concurso: {len(todos_unicos)}")
+    for u in todos_unicos:
+        print(f"   - {u}")
+
+
+if __name__ == "__main__":
+    analizar_concursos()
