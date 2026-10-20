@@ -1,0 +1,8 @@
+# Lista original con elementos repetidos
+lista_original = [4, 2, 9, 4, 1, 2, 8, 9, 5]
+
+# Eliminamos duplicados conservando el orden original usando un diccionario auxiliar
+lista_sin_duplicados = list(dict.fromkeys(lista_original))
+
+print(f"Lista original: {lista_original}")
+print(f"Lista sin duplicados: {lista_sin_duplicados}")
