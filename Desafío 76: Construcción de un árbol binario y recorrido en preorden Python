@@ -1,0 +1,35 @@
+class Nodo:
+
+  def __init__(self, valor):
+    self.valor = valor
+    self.izquierdo = None
+    self.derecho = None
+
+
+# Construcción del árbol binario (3 niveles de profundidad)
+# Estructura visual:
+#           1
+#         /   \
+#        2     3
+#       / \   / \
+#      4   5 6   7
+
+raiz = Nodo(1)
+raiz.izquierdo = Nodo(2)
+raiz.derecho = Nodo(3)
+raiz.izquierdo.izquierdo = Nodo(4)
+raiz.izquierdo.derecho = Nodo(5)
+raiz.derecho.izquierdo = Nodo(6)
+raiz.derecho.derecho = Nodo(7)
+
+
+def preorden(nodo):
+  if nodo is not None:
+    print(nodo.valor, end=" ")  # 1. Visitar la raíz
+    preorden(nodo.izquierdo)  # 2. Recorrer subárbol izquierdo
+    preorden(nodo.derecho)  # 3. Recorrer subárbol derecho
+
+
+print("Recorrido en preorden:")
+preorden(raiz)
+print()
