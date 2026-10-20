@@ -1,0 +1,12 @@
+try:
+  n1 = int(input("Introduce el primer número: "))
+  n2 = int(input("Introduce el segundo número: "))
+  n3 = int(input("Introduce el tercer número: "))
+
+  if n1 == n2 and n2 == n3:
+    print("Todos los números son iguales.")
+  else:
+    mayor = max(n1, n2, n3)
+    print(f"El número mayor es: {mayor}")
+except ValueError:
+  print("Por favor, introduce únicamente números enteros válidos.")
