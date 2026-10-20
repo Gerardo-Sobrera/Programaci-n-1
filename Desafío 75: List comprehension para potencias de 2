@@ -1,0 +1,5 @@
+# Creación de la lista usando list comprehension
+potencias = [2**i for i in range(10)]
+
+print("Potencias de 2 del 0 al 9:")
+print(potencias)
