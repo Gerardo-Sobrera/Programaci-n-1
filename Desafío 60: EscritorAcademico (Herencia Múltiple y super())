@@ -1,0 +1,27 @@
+class Escritor:
+
+  def __init__(self, seudonimo, *args, **kwargs):
+    super().__init__(**kwargs)
+    self.seudonimo = seudonimo
+
+
+class Academico:
+
+  def __init__(self, institucion, *args, **kwargs):
+    super().__init__(**kwargs)
+    self.institucion = institucion
+
+
+class EscritorAcademico(Escritor, Academico):
+
+  def __init__(self, seudonimo, institucion, area_investigacion):
+    # super() gestiona la cadena de herencia múltiple (MRO)
+    super().__init__(seudonimo=seudonimo, institucion=institucion)
+    self.area_investigacion = area_investigacion
+
+  def publicar_articulo(self, titulo_articulo):
+    return (
+        f"El investigador {self.seudonimo} (afiliado a {self.institucion}) ha"
+        f" publicado el artículo '{titulo_articulo}' en"
+        f" {self.area_investigacion}."
+    )
