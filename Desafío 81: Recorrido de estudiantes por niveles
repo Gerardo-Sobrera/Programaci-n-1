@@ -1,0 +1,47 @@
+from collections import deque
+
+
+class NodoNivel:
+
+  def __init__(self, grado, estudiantes):
+    self.grado = grado
+    self.estudiantes = estudiantes
+    self.izquierdo = None
+    self.derecho = None
+
+
+def recorrido_por_niveles(raiz):
+  if not raiz:
+    return
+
+  # Usamos una cola (queue) para recorrer el árbol nivel por nivel (BFS)
+  cola = deque([raiz])
+  nivel = 1
+
+  while cola:
+    nodos_en_nivel = len(cola)
+    print(f"--- Nivel {nivel} ---")
+
+    for _ in range(nodos_en_nivel):
+      nodo_actual = cola.popleft()
+      print(
+          f" Grado: {nodo_actual.grado} | Estudiantes:"
+          f" {nodo_actual.estudiantes}"
+      )
+
+      # Añadimos los hijos a la cola para procesarlos en los siguientes niveles
+      if nodo_actual.izquierdo:
+        cola.append(nodo_actual.izquierdo)
+      if nodo_actual.derecho:
+        cola.append(nodo_actual.derecho)
+
+    nivel += 1
+
+
+# Construcción del árbol jerárquico
+raiz = NodoNivel("Grado 12 (Nivel Superior)", ["Ana", "Carlos"])
+raiz.izquierdo = NodoNivel("Grado 8", ["Lucía", "Mateo"])
+raiz.derecho = NodoNivel("Grado 9", ["Sofía", "Diego"])
+raiz.izquierdo.izquierdo = NodoNivel("Grado 4", ["Pedro"])
+
+recorrido_por_niveles(raiz)
