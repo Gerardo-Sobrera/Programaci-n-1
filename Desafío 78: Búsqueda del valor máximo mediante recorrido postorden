@@ -1,0 +1,16 @@
+def max_postorden(nodo):
+  if nodo is None:
+    return float(
+        "-inf"
+    )  # Retorna un valor extremadamente bajo para casos base vacíos
+
+  # Postorden: Izquierdo -> Derecho -> Raíz
+  max_izq = max_postorden(nodo.izquierdo)
+  max_der = max_postorden(nodo.derecho)
+
+  # Compara el valor del nodo actual con los máximos de sus hijos
+  return max(nodo.valor, max_izq, max_der)
+
+
+valor_maximo = max_postorden(raiz)
+print(f"El valor máximo encontrado en el árbol es: {valor_maximo}")
