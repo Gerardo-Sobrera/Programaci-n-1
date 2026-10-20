@@ -1,0 +1,37 @@
+import math
+
+def calcular_distancia(coordenadas):
+    """Calcula la distancia euclidiana de un punto (x, y, z) al origen (0, 0, 0)."""
+    x, y, z = coordenadas
+    return math.sqrt(x**2 + y**2 + z**2)
+
+
+def gestionar_satelites():
+    # Diccionario con al menos 5 satélites y sus coordenadas inmutables (tuplas)
+    satelites = {
+        "Alpha-1": (120, 340, 500),
+        "Beta-2": (15, 22, 10),
+        "Gamma-3": (1250, 890, 430),
+        "Delta-4": (300, 400, 120),
+        "Epsilon-5": (5, 8, 2)
+    }
+
+    print("--- DISTANCIAS DE SATÉLITES AL ORIGEN (0, 0, 0) ---")
+    
+    distancias = {}
+    for nombre, coords in satelites.items():
+        distancia = calcular_distancia(coords)
+        distancias[nombre] = distancia
+        print(f"Satélite {nombre} (Coords: {coords}) -> Distancia: {distancia:.2f} km")
+
+    # Identificar el más cercano y el más lejano
+    mas_cercano = min(distancias, key=distancias.get)
+    mas_lejano = max(distancias, key=distancias.get)
+
+    print("\n--- RESULTADOS DE ANÁLISIS ---")
+    print(f"🛰️ Satélite más cercano: {mas_cercano} a una distancia de {distancias[mas_cercano]:.2f} km")
+    print(f"🚀 Satélite más lejano: {mas_lejano} a una distancia de {distancias[mas_lejano]:.2f} km")
+
+
+if __name__ == "__main__":
+    gestionar_satelites()
