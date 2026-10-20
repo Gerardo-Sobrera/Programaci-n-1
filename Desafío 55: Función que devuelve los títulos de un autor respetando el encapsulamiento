@@ -1,0 +1,5 @@
+def obtener_titulos_autor(autor):
+  """Toma un objeto Autor y devuelve una lista con los títulos de sus libros."""
+  # Usamos un método de la clase para mantener el encapsulamiento
+  libros = autor.obtener_libros_privados()
+  return [libro.get_titulo() for libro in libros]
