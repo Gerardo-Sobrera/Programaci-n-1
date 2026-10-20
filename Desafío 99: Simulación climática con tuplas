@@ -1,0 +1,28 @@
+def simular_clima():
+    # Almacenamiento de múltiples registros climáticos en tuplas: (ciudad, temperatura, humedad)
+    registros = [
+        ("Montevideo", 22.5, 65),
+        ("Buenos Aires", 28.0, 78),
+        ("Santiago", 19.1, 45),
+        ("Bogotá", 16.4, 82),
+        ("Lima", 24.0, 75)
+    ]
+
+    # 1. Determinar la ciudad con la temperatura más alta y más baja
+    # Usamos 'key=lambda x: x[1]' para evaluar el elemento de la posición 1 (temperatura)
+    ciudad_mas_calurosa = max(registros, key=lambda x: x[1])
+    ciudad_mas_frias = min(registros, key=lambda x: x[1])
+
+    # 2. Calcular el promedio general de humedad (posición 2 de la tupla)
+    suma_humedad = sum(humedad for _, _, humedad in registros)
+    promedio_humedad = suma_humedad / len(registros)
+
+    # Mostrar resultados
+    print("--- REPORTE DE SIMULACIÓN CLIMÁTICA ---")
+    print(f"☀️ Ciudad con mayor temperatura: {ciudad_mas_calurosa[0]} ({ciudad_mas_calurosa[1]}°C)")
+    print(f"❄️ Ciudad con menor temperatura: {ciudad_mas_frias[0]} ({ciudad_mas_frias[1]}°C)")
+    print(f"💧 Promedio general de humedad: {promedio_humedad:.1f}%")
+
+
+if __name__ == "__main__":
+    simular_clima()
