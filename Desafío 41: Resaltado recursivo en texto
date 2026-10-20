@@ -1,0 +1,25 @@
+# Módulo simulado o incorporado: procesador_texto.py
+
+
+def resaltar_palabra(texto, palabra):
+  """Busca y resalta recursivamente todas las ocurrencias de una palabra clave."""
+  # Caso base: si la palabra ya no está en el texto, retornamos el texto tal cual
+  if palabra not in texto:
+    return texto
+
+  # Encontramos la primera ocurrencia
+  indice = texto.find(palabra)
+
+  # Dividimos el texto: antes de la palabra, la palabra resaltada, y el resto procesado recursivamente
+  parte_anterior = texto[:indice]
+  palabra_resaltada = f"**[{palabra.upper()}]**"
+  resto_texto = texto[indice + len(palabra) :]
+
+  return parte_anterior + palabra_resaltada + resaltar_palabra(resto_texto, palabra)
+
+
+# Ejemplo de uso:
+texto_largo = "python es genial. aprender python abre muchas puertas en python."
+resultado = resaltar_palabra(texto_largo, "python")
+print(resultado)
+# Salida: **[PYTHON]** es genial. aprender **[PYTHON]** abre muchas puertas en **[PYTHON]**.
