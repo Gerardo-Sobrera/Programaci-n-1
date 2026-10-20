@@ -1,0 +1,50 @@
+def consultar_stock_producto(sistema, id_tienda, id_producto):
+  """Consulta el stock de un producto específico en una tienda determinada."""
+  for tienda in sistema["tiendas"]:
+    if tienda["id_tienda"] == id_tienda:
+      producto = tienda["inventario"].get(id_producto)
+      if producto:
+        return (
+            f"Stock de '{producto['name'] if 'name' in producto else producto['nombre']}' "
+            f"en tienda {tienda['nombre']}: {producto['stock']} unidades."
+        )
+      return "Producto no encontrado en el inventario de esta tienda."
+  return "Tienda no encontrada."
+
+
+def registrar_venta(sistema, id_tienda, id_empleado, id_producto, cantidad):
+  """Registra una venta, actualiza el stock y añade la transacción."""
+  for tienda in sistema["tiendas"]:
+    if tienda["id_tienda"] == id_tienda:
+      # Verificar inventario
+      if id_producto in tienda["inventario"]:
+        prod = tienda["inventario"][id_producto]
+        if prod["stock"] >= cantidad:
+          # Descontar stock
+          prod["stock"] -= cantidad
+          total_venta = prod["precio"] * cantidad
+
+          # Registrar transacción
+          nueva_transaccion = {
+              "id_transaccion": f"TX-{len(tienda['transacciones']) + 501}",
+              "empleado": id_empleado,
+              "items": [{"id_producto": id_producto, "cantidad": cantidad}],
+              "total": total_venta,
+          }
+          tienda["transacciones"].append(nueva_transaccion)
+          return (
+              f"Venta exitosa. Total: ${total_venta}. Stock restante:"
+              f" {prod['stock']}"
+          )
+        else:
+          return "Error: Stock insuficiente."
+      return "El producto no existe en esta tienda."
+  return "Tienda no encontrada."
+
+
+# Ejemplos de uso:
+print(consultar_stock_producto(sistema_inventario, "T001", "P002"))
+# Salida: Stock de 'Mouse Óptico' en tienda Sucursal Centro: 45 unidades.
+
+print(registrar_venta(sistema_inventario, "T001", "E002", "P002", 3))
+# Salida: Venta exitosa. Total: $76.5. Stock restante: 42
