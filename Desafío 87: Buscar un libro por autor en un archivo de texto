@@ -1,0 +1,28 @@
+def buscar_por_autor(nombre_archivo, autor_buscado):
+  encontrados = False
+  print(f"\nBuscando libros del autor: '{autor_buscado}'...")
+
+  try:
+    with open(nombre_archivo, "r", encoding="utf-8") as archivo:
+      for linea in archivo:
+        # Asumimos un formato de línea como: "Título - Autor"
+        if "-" in linea:
+          titulo, autor = linea.strip().split("-", 1)
+          # Comparamos ignorando mayúsculas/minúsculas y espacios extra
+          if autor.strip().lower() == autor_buscado.strip().lower():
+            print(f"- {titulo.strip()}")
+            encontrados = True
+
+    if not encontrados:
+      print(
+          f"No se encontraron coincidencias para el autor '{autor_buscado}'."
+      )
+  except FileNotFoundError:
+    print(
+        f"El archivo '{nombre_archivo}' no existe. Asegúrate de crearlo"
+        " primero."
+    )
+
+
+# Ejemplo de uso:
+# buscar_por_autor("libros.txt", "Gabriel García Márquez")
