@@ -1,0 +1,66 @@
+def registrar_curso(registro, estudiante, curso):
+    """Registra un nuevo curso completado para un estudiante.
+    Si el estudiante no existe en el diccionario, se inicializa con un conjunto vacío.
+    """
+    if estudiante not in registro:
+        registro[estudiante] = set()
+    registro[estudiante].add(curso)
+    print(f"✅ Curso '{curso}' registrado exitosamente para {estudiante}.")
+
+
+def encontrar_estudiantes_todos_los_cursos(registro, cursos_ofrecidos):
+    """Encuentra y retorna una lista con los estudiantes que han completado 
+    todos los cursos ofrecidos por la plataforma.
+    """
+    estudiantes_completos = []
+    for estudiante, cursos in registro.items():
+        # Se comparan los conjuntos directamente
+        if cursos == cursos_ofrecidos:
+            estudiantes_completos.append(estudiante)
+    return estudiantes_completos
+
+
+def identificar_estudiantes_curso_unico(registro, curso_especifico):
+    """Identifica y retorna una lista con los estudiantes que 
+    únicamente han completado un curso específico.
+    """
+    estudiantes_unicos = []
+    for estudiante, cursos in registro.items():
+        # Comprueba si el conjunto contiene exactamente ese único curso
+        if cursos == {curso_especifico}:
+            estudiantes_unicos.append(estudiante)
+    return estudiantes_unicos
+
+
+def main():
+    # Conjunto total de cursos disponibles en la plataforma
+    cursos_ofrecidos = {"Python", "Matemáticas", "Bases de Datos", "Algoritmos"}
+
+    # Diccionario inicial: Clave = Estudiante, Valor = Conjunto de cursos
+    registro_estudiantes = {
+        "Ana": {"Python", "Matemáticas", "Bases de Datos", "Algoritmos"},
+        "Carlos": {"Python", "Algoritmos"},
+        "Elena": {"Python", "Matemáticas", "Bases de Datos", "Algoritmos"},
+        "Mateo": {"Bases de Datos"},
+        "Lucía": {"Bases de Datos"}
+    }
+
+    print("--- PLATAFORMA EDUCATIVA EN LÍNEA ---")
+    print(f"📚 Cursos ofrecidos en total: {cursos_ofrecidos}\n")
+
+    # 1. Registrar un curso nuevo para un estudiante existente
+    registrar_curso(registro_estudiantes, "Carlos", "Bases de Datos")
+    print()
+
+    # 2. Encontrar estudiantes que completaron todos los cursos ofrecidos
+    estudiantes_todos = encontrar_estudiantes_todos_los_cursos(registro_estudiantes, cursos_ofrecidos)
+    print(f"🏆 Estudiantes que completaron TODOS los cursos: {estudiantes_todos}")
+
+    # 3. Identificar estudiantes que solo completaron un curso específico
+    curso_buscado = "Bases de Datos"
+    estudiantes_solo_uno = identificar_estudiantes_curso_unico(registro_estudiantes, curso_buscado)
+    print(f"🔍 Estudiantes que SOLO completaron el curso '{curso_buscado}': {estudiantes_solo_uno}")
+
+
+if __name__ == "__main__":
+    main()
