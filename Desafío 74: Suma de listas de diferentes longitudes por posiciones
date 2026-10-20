@@ -1,0 +1,16 @@
+lista1 = [1, 2, 3, 4, 10]
+lista2 = [5, 6, 7]
+
+# Determinamos cuál lista es más larga para recorrerla por completo
+max_len = max(len(lista1), len(lista2))
+suma_listas = []
+
+for i in range(max_len):
+  # Si el índice existe en la lista se toma su valor, si se sale de rango se asume 0
+  val1 = lista1[i] if i < len(lista1) else 0
+  val2 = lista2[i] if i < len(lista2) else 0
+  suma_listas.append(val1 + val2)
+
+print(f"Lista 1: {lista1}")
+print(f"Lista 2: {lista2}")
+print(f"Suma por posiciones: {suma_listas}")
