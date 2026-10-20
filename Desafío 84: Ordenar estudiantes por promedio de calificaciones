@@ -1,0 +1,37 @@
+def ordenar_por_seleccion_desc(estudiantes_promedios):
+  n = len(estudiantes_promedios)
+
+  for i in range(n):
+    # Asumimos que el elemento actual es el que tiene el mayor promedio
+    indice_mayor = i
+
+    for j in range(i + 1, n):
+      # Buscamos un promedio mayor para lograr orden descendente
+      if (
+          estudiantes_promedios[j]["promedio"]
+          > estudiantes_promedios[indice_mayor]["promedio"]
+      ):
+        indice_mayor = j
+
+    # Intercambiamos el elemento actual con el mayor encontrado
+    estudiantes_promedios[i], estudiantes_promedios[indice_mayor] = (
+        estudiantes_promedios[indice_mayor],
+        estudiantes_promedios[i],
+    )
+
+  return estudiantes_promedios
+
+
+# Lista de diccionarios con estudiantes y promedios
+lista_estudiantes = [
+    {"nombre": "Carlos", "promedio": 7.8},
+    {"nombre": "Ana", "promedio": 9.2},
+    {"nombre": "Lucía", "promedio": 8.5},
+    {"nombre": "Diego", "promedio": 6.4},
+]
+
+estudiantes_ordenados = ordenar_por_seleccion_desc(lista_estudiantes)
+
+print("Estudiantes ordenados por promedio (del más alto al más bajo):")
+for pos, est in enumerate(estudiantes_ordenados, 1):
+  print(f"{pos}. {est['nombre']} - Promedio: {est['promedio']}")
