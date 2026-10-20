@@ -1,0 +1,79 @@
+import re
+
+
+class NodoExpresion:
+
+  def __init__(self, valor):
+    self.valor = valor
+    self.izquierdo = None
+    self.derecho = None
+
+
+def precedencia(op):
+  if op in ("+", "-"):
+    return 1
+  if op in ("*", "/"):
+    return 2
+  return 0
+
+
+def construir_arbol_expresion(expresion):
+  # Limpiamos espacios y separamos números de operadores usando regex
+  elementos = re.findall(r"\d+|\+|\-|\*|\/", expresion)
+
+  salida = []
+  ops = []
+
+  # Algoritmo Shunting-yard simplificado para convertir infijo a postfijo
+  for token in elementos:
+    if token.isdigit():
+      salida.append(token)
+    elif token in "+-*/":
+      while (
+          ops and ops[-1] in "+-*/" and precedencia(ops[-1]) >= precedencia(token)
+      ):
+        salida.append(ops.pop())
+      ops.append(token)
+  while ops:
+    salida.append(ops.pop())
+
+  # Construcción del árbol de expresiones desde la notación postfija
+  pila_nodos = []
+  for token in salida:
+    if token.isdigit():
+      pila_nodos.append(NodoExpresion(int(token)))
+    else:
+      nodo = NodoExpresion(token)
+      nodo.derecho = pila_nodos.pop()
+      nodo.izquierdo = pila_nodos.pop()
+      pila_nodos.append(nodo)
+
+  return pila_nodos[0]
+
+
+def evaluar_arbol(nodo):
+  if nodo is None:
+    return 0
+  # Si es una hoja (un número entero)
+  if nodo.izquierdo is None and nodo.derecho is None:
+    return int(nodo.valor)
+
+  val_izq = evaluar_arbol(nodo.izquierdo)
+  val_der = evaluar_arbol(nodo.derecho)
+
+  # Aplica la operación correspondiente según el operador del nodo
+  if nodo.valor == "+":
+    return val_izq + val_der
+  elif nodo.valor == "-":
+    return val_izq - val_der
+  elif nodo.valor == "*":
+    return val_izq * val_der
+  elif nodo.valor == "/":
+    return val_izq / val_der
+
+
+# Prueba con la expresión requerida
+expr = "5 + 3 * 4"
+arbol_expr = construir_arbol_expresion(expr)
+resultado = evaluar_arbol(arbol_expr)
+print(f"Resultado de la expresión '{expr}': {resultado}")
