@@ -1,0 +1,18 @@
+# Ejemplo conceptual de la estructura base
+biblioteca = {
+    "libros": {
+        "978-0143127741": {
+            "titulo": "Ciudad de Cristal",
+            "autor_id": "A001",
+            "año": 1985,
+            "stock": 3,
+        }
+    },
+    "autores": {
+        "A001": {
+            "nombre": "Paul Auster",
+            "nacionalidad": "Estadounidense",
+            "libros": ["978-0143127741"],
+        }
+    },
+}
