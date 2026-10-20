@@ -1,0 +1,37 @@
+def analizar_estudio_mercado():
+    # Conjuntos de usuarios para cada plataforma
+    facebook = {"ana", "carlos", "elena", "lucia", "pedro"}
+    instagram = {"carlos", "elena", "mateo", "sofia", "pedro"}
+    twitter = {"carlos", "ana", "sofia", "diego", "pedro"}
+
+    # 1. Usuarios que usan las tres plataformas (Intersección general)
+    usuarios_tres = facebook & instagram & twitter
+
+    # 2. Usuarios que usan solo una plataforma
+    # (Restamos de cada conjunto los usuarios presentes en los otros dos)
+    solo_facebook = facebook - (instagram | twitter)
+    solo_instagram = instagram - (facebook | twitter)
+    solo_twitter = twitter - (facebook | instagram)
+    usuarios_solo_una = solo_facebook | solo_instagram | solo_twitter
+
+    # 3. Usuarios que usan al menos dos plataformas
+    # (Intersección por parejas unidas entre sí)
+    usuarios_al_menos_dos = (
+        (facebook & instagram) | (instagram & twitter) | (twitter & facebook)
+    )
+
+    # Resultados
+    print("--- RESULTADOS DEL ESTUDIO DE MERCADO ---")
+
+    print("\n1. Usuarios que usan las TRES plataformas:")
+    print(f"   {usuarios_tres if usuarios_tres else 'Ninguno'}")
+
+    print("\n2. Usuarios que usan SOLO UNA plataforma:")
+    print(f"   {usuarios_solo_una}")
+
+    print("\n3. Usuarios que usan AL MENOS DOS plataformas:")
+    print(f"   {usuarios_al_menos_dos}")
+
+
+if __name__ == "__main__":
+    analizar_estudio_mercado()
