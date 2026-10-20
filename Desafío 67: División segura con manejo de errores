@@ -1,0 +1,14 @@
+try:
+  num1 = int(input("Ingresa el primer número entero: "))
+  num2 = int(input("Ingresa el segundo número entero: "))
+
+  resultado = num1 / num2
+  print(f"El resultado de la división es: {resultado}")
+
+except ValueError:
+  print(
+      "Error: Ingresaste un valor no numérico. Por favor, introduce solo"
+      " números enteros."
+  )
+except ZeroDivisionError:
+  print("Error: No se puede realizar una división entre cero.")
