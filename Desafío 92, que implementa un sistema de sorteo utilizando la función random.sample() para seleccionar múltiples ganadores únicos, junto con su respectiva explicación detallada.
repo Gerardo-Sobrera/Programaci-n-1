@@ -1,0 +1,40 @@
+import random
+
+def realizar_sorteo(participantes, cantidad_ganadores):
+    """Selecciona una muestra aleatoria de ganadores únicos de una lista de participantes."""
+    # Validación por si hay menos participantes que la cantidad de ganadores solicitados
+    if cantidad_ganadores > len(participantes):
+        print("Error: No se pueden seleccionar más ganadores que el total de participantes.")
+        return []
+
+    # Uso de random.sample para obtener ganadores únicos
+    ganadores = random.sample(participantes, cantidad_ganadores)
+    return ganadores
+
+
+def main():
+    # Lista grande de participantes en el sorteo
+    participantes = [
+        "Ana Gómez", "Carlos Pérez", "Daniela Ruiz", "Elena Torres",
+        "Javier Morales", "Lucía Fernández", "Mateo Silva", "Sofía Castro",
+        "Diego Rojas", "Valentina Ortiz", "Andrés Mendoza", "Camila Vargas",
+        "Gabriel Romero", "Mariana Soto", "Ricardo Castro", "Valeria Vega"
+    ]
+
+    print(f"--- TOTAL DE PARTICIPANTES: {len(participantes)} ---")
+
+    # Definimos cuántos ganadores queremos seleccionar (por ejemplo, 4)
+    cantidad_a_seleccionar = 4
+    print(f"Seleccionando {cantidad_a_seleccionar} ganadores aleatorios y únicos...\n")
+
+    # Ejecutar el sorteo
+    ganadores_sorteo = realizar_sorteo(participantes, cantidad_a_seleccionar)
+
+    if ganadores_sorteo:
+        print("🎉 ¡LISTA DE GANADORES DEL SORTEO! 🎉")
+        for i, ganador in enumerate(ganadores_sorteo, 1):
+            print(f"  {i}. {ganador}")
+
+
+if __name__ == "__main__":
+    main()
