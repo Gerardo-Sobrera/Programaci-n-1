@@ -1,0 +1,28 @@
+import random
+
+
+def generar_temperaturas_climaticas(cantidad):
+  # Generamos temperaturas aleatorias entre -10.0 y 40.0 grados Celsius
+  # Usamos round(..., 2) para limitar a dos decimales y mantener los datos limpios
+  temperaturas = [
+      round(random.uniform(-10.0, 40.0), 2) for _ in range(cantidad)
+  ]
+  return temperaturas
+
+
+# Definimos cuántos registros climáticos queremos simular (ej. 10 registros)
+num_registros = 10
+dataset_temperaturas = generar_temperaturas_climaticas(num_registros)
+
+print(f"Dataset de temperaturas simuladas ({num_registros} registros):")
+print(dataset_temperaturas)
+
+# Análisis posterior básico utilizando la estructura de lista
+temp_min = min(dataset_temperaturas)
+temp_max = max(dataset_temperaturas)
+temp_promedio = sum(dataset_temperaturas) / len(dataset_temperaturas)
+
+print("\n--- Análisis Estadístico de la Simulación ---")
+print(f"Temperatura mínima registrada: {temp_min}°C")
+print(f"Temperatura máxima registrada: {temp_max}°C")
+print(f"Temperatura promedio: {temp_promedio:.2f}°C")
