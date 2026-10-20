@@ -1,0 +1,15 @@
+def suma_inorden(nodo):
+  if nodo is None:
+    return 0
+
+  # Inorden: Izquierdo -> Raíz -> Derecho
+  suma_izq = suma_inorden(nodo.izquierdo)
+  suma_actual = nodo.valor
+  suma_der = suma_inorden(nodo.derecho)
+
+  return suma_izq + suma_actual + suma_der
+
+
+# Usando el árbol 'raiz' creado en el desafío anterior
+resultado_suma = suma_inorden(raiz)
+print(f"La suma total de los valores de los nodos es: {resultado_suma}")
