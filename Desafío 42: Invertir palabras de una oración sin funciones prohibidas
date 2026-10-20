@@ -1,0 +1,20 @@
+def invertir_palabras(oracion):
+  """Invierte las palabras en una oración de forma recursiva sin usar [::-1] o reverse()."""
+  # Separamos la oración en una lista de palabras usando el espacio
+  palabras = oracion.split()
+
+  def _invertir_lista(lista):
+    # Caso base: si la lista está vacía o tiene un solo elemento
+    if len(lista) <= 1:
+      return lista
+    # Caso recursivo: tomamos el primer elemento y lo pasamos al final, procesando el resto
+    return _invertir_lista(lista[1:]) + [lista[0]]
+
+  # Reconstruimos la oración uniendo la lista invertida con espacios
+  return " ".join(_invertir_lista(palabras))
+
+
+# Ejemplo de uso:
+oracion = "aprender a programar es divertido"
+print(invertir_palabras(oracion))
+# Salida: divertido es programar a aprender
