@@ -1,0 +1,16 @@
+def registrar_prestamo():
+  libro = input("Nombre del libro: ")
+  prestatario = input("Nombre del prestatario: ")
+  fecha = input("Fecha del préstamo (ej. DD/MM/AAAA): ")
+
+  # Abrimos el archivo en modo 'append' ('a') para agregar sin sobrescribir
+  with open("prestamos.txt", "a", encoding="utf-8") as archivo:
+    archivo.write(
+        f"Libro: {libro} | Prestatario: {prestatario} | Fecha: {fecha}\n"
+    )
+
+  print("¡Préstamo registrado exitosamente en 'prestamos.txt'!")
+
+
+# Ejemplo de ejecución (descomenta para probar):
+# registrar_prestamo()
