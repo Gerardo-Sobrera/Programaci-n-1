@@ -1,0 +1,36 @@
+import csv
+import os
+
+
+def actualizar_inventario(nombre_archivo, libro_buscado, nuevas_copias):
+  filas = []
+  encontrado = False
+
+  if os.path.exists(nombre_archivo):
+    # Paso 1: Leer el archivo y actualizar la fila correspondiente en memoria
+    with open(nombre_archivo, "r", encoding="utf-8") as archivo:
+      lector = csv.reader(archivo)
+      for fila in lector:
+        if fila and fila[0].lower() == libro_buscado.lower():
+          fila[1] = str(nuevas_copias)  # Actualizamos la columna de copias
+          encontrado = True
+        filas.append(fila)
+
+    # Paso 2: Reescribir todo el archivo CSV con los datos actualizados
+    with open(nombre_archivo, "w", newline="", encoding="utf-8") as archivo:
+      escritor = csv.writer(archivo)
+      escritor.writerows(filas)
+
+    if encontrado:
+      print(
+          f"Inventario actualizado: '{libro_buscado}' ahora tiene"
+          f" {nuevas_copias} copias."
+      )
+    else:
+      print(f"El libro '{libro_buscado}' no se encontró en el inventario.")
+  else:
+    print(f"El archivo '{nombre_archivo}' no existe.")
+
+
+# Ejemplo de uso:
+# actualizar_inventario("inventario.csv", "Clean Code", 5)
