@@ -1,0 +1,26 @@
+# Creando autores
+autor1 = Autor("Gabriel García Márquez", "Colombiana")
+autor2 = Autor("J.K. Rowling", "Británica")
+
+# Creando libros
+libro1 = Libro("Cien años de soledad", autor1, "978-0307474728")
+libro2 = Libro("El amor en los tiempos del cólera", autor1, "978-0307389732")
+libro3 = Libro("Harry Potter y la piedra filosofal", autor2, "978-0747532699")
+
+# Agregando libros a los autores (Desafío 53)
+autor1.agregar_libro(libro1)
+autor1.agregar_libro(libro2)
+autor2.agregar_libro(libro3)
+
+# Probando la función del Desafío 55
+print(f"Títulos de {autor1.nombre}: {obtener_titulos_autor(autor1)}")
+# Salida: Títulos de Gabriel García Márquez: ['Cien años de soledad', 'El amor en los tiempos del cólera']
+
+# Probando la función del Desafío 56
+autores_cadena = [autor1, autor2]
+prolifico = autor_con_mas_libros(autores_cadena)
+print(
+    f"El autor con más libros es {prolifico.nombre} con"
+    f" {prolifico.obtener_cantidad_libros()} libros."
+)
+# Salida: El autor con más libros es Gabriel García Márquez con 2 libros.
